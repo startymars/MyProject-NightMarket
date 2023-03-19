@@ -1,23 +1,73 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
+
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: () => import('../views/Front/HomeView.vue')
+  },
+  {
+    path: '/News',
+    name: 'News',
+    component: () => import('../views/Front/NewsView.vue')
+  },
+  {
+    path: '/Food',
+    name: 'Food',
+    component: () => import('../views/Front/FoodView.vue')
+  },
+  {
+    path: '/FoodDetail',
+    name: 'FoodDetail',
+    component: () => import('../views/Front/FoodDetailView.vue')
+  },
+  {
+    path: '/Cart',
+    name: 'Cart',
+    component: () => import('../views/Front/CartView.vue')
+  },
+  {
+    path: '/Order',
+    name: 'Order',
+    component: () => import('../views/Front/OrderView.vue')
+  },
+  {
+    path: '/Favorite',
+    name: 'Favorite',
+    component: () => import('../views/Front/FavoriteView.vue')
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: () => import('../views/Front/adminLogin.vue')
+  },
+  {
+    path: '/admin',
+    component: () => import('../views/Dashabord/DashabordView.vue'),
+    children: [
+      {
+        path: 'adminOrder',
+        name: 'adminOrder',
+        component: () => import('../views/Dashabord/adminOrder.vue')
+      },
+      {
+        path: 'adminNews',
+        name: 'adminNews',
+        component: () => import('../views/Dashabord/adminNews.vue')
+      },
+      {
+        path: 'adminFood',
+        name: 'adminFood',
+        component: () => import('../views/Dashabord/adminFood.vue')
+      }
+    ]
+  }
+]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
+  history: createWebHashHistory(),
+  linkActiveClass: 'active',
+  routes
 })
 
 export default router
