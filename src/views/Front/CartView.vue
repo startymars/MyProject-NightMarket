@@ -67,8 +67,14 @@
                 <td>${{ item.product.price }}</td>
                 <td>
                   <div class="input-group input-group-sm">
-                    <select name="" id="" class="form-control">
-                      <option :value="i" v-for="i in 20" :key="i + '12345'">
+                    <select
+                      name=""
+                      id=""
+                      class="form-control"
+                      v-model="item.qty"
+                      @change="updateCartItem(item)"
+                    >
+                      <option :value="i" v-for="i in 10" :key="i + '12345'">
                         {{ i }}
                       </option>
                     </select>
@@ -90,10 +96,13 @@
                 class="form-control p-3"
                 id="discount"
                 placeholder="輸入優惠代碼"
+                v-model="this.coupon"
               />
             </div>
             <div class="text-end mb-3">
-              <button type="button" class="btn btn-primary">使用折扣</button>
+              <button type="button" class="btn btn-primary" @click="useCoupon">
+                使用折扣
+              </button>
             </div>
           </div>
           <div class="cartList p-3 mb-4">
@@ -120,7 +129,9 @@
               </div>
             </div>
             <div class="text-end mb-3">
-              <button type="button" class="btn btn-primary">前往付款</button>
+              <router-link to="/Order">
+                <button type="button" class="btn btn-primary">前往付款</button>
+              </router-link>
             </div>
           </div>
         </div>
@@ -138,6 +149,7 @@ export default {
   data() {
     return {
       carts: [],
+      coupon: "",
     };
   },
   components: {
@@ -155,6 +167,24 @@ export default {
         })
         .catch((err) => {
           alert(err.response.data);
+        });
+    },
+    updateCartItem(item) {
+      //購物車的id、產品的id
+      const data = {
+        product_id: item.product.id, //同名不寫第二次
+        qty: item.qty,
+      };
+      this.$http
+        .put(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart/${item.id}`, {
+          data,
+        })
+        .then((res) => {
+          alert("更新購物車", res.data);
+          this.getCarts();
+        })
+        .catch((err) => {
+          alert(err.data);
         });
     },
     deleteCartItem(item) {
@@ -179,6 +209,9 @@ export default {
           console.log(err.data.message);
           alert(err.data.message);
         });
+    },
+    useCoupon() {
+      console.log("取得優惠券", this.coupon);
     },
   },
   mounted() {
