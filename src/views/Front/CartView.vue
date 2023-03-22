@@ -144,6 +144,8 @@
 <script>
 import HeaderNav from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import cartStore from "@/stores/counter.js";
+import { mapState } from "pinia";
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
 export default {
   data() {
@@ -156,19 +158,23 @@ export default {
     HeaderNav,
     FooterView,
   },
+  computed: {
+    ...mapState(cartStore, ['carts']),
+  },
   methods: {
-    getCarts() {
-      this.$http
-        .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`)
-        .then((res) => {
-          console.log("取得購物車列表", res.data.data);
-          this.carts = res.data.data;
-          console.log("有被存入", this.carts);
-        })
-        .catch((err) => {
-          alert(err.response.data);
-        });
-    },
+    // getCarts() {
+    //   this.$http
+    //     .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`)
+    //     .then((res) => {
+    //       console.log("取得購物車列表", res.data.data);
+    //       this.carts = res.data.data;
+    //       console.log("有被存入", this.carts);
+    //     })
+    //     .catch((err) => {
+    //       alert(err.response.data);
+    //     });
+
+    // },
     updateCartItem(item) {
       //購物車的id、產品的id
       const data = {
@@ -213,9 +219,6 @@ export default {
     useCoupon() {
       console.log("取得優惠券", this.coupon);
     },
-  },
-  mounted() {
-    this.getCarts();
   },
 };
 </script>
