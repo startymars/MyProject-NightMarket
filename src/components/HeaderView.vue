@@ -23,6 +23,7 @@
             </router-link>
             <router-link to="/Cart" class="px-2">
               <img src="../assets/shopping-cart.png" alt="shopping-cart" />
+              <span class="badge rounded-pill bg-primary ">{{cartNum}}</span>
             </router-link>
             <img src="../assets/user.png" alt="user" class="px-2" />
         </li>
@@ -33,7 +34,8 @@
 </template>
 
 <script>
-
+import cartStore from "@/stores/cartStore.js";
+import { mapState ,mapActions} from "pinia";
 export default {
   methods: {
     scroll () {
@@ -45,9 +47,14 @@ export default {
       } else {
         nav.classList.remove('scrolled')
       }
-    }
+    },
+    ...mapActions(cartStore, ['getCarts'])
+  },
+  computed:{
+   ...mapState(cartStore, ['cartNum'])
   },
   mounted () {
+    this.getCarts();
     const navScroll = document.querySelector('nav')
     console.log(navScroll)
     navScroll.addEventListener('scroll', this.scroll())

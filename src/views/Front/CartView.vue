@@ -8,7 +8,7 @@
       <div class="cartClear d-flex justify-content-between align-items-center">
         <nav aria-label="breadcrumb" class="pt-5 pb-5">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">首頁</a></li>
+            <li class="breadcrumb-item"><router-link to="/">首頁</router-link></li>
             <li class="breadcrumb-item active" aria-current="page">購物車</li>
           </ol>
         </nav>
@@ -144,13 +144,12 @@
 <script>
 import HeaderNav from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
-import cartStore from "@/stores/counter.js";
-import { mapState } from "pinia";
+import cartStore from "@/stores/cartStore.js";
+import { mapActions, mapState } from "pinia";
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
 export default {
   data() {
     return {
-      carts: [],
       coupon: "",
     };
   },
@@ -162,19 +161,7 @@ export default {
     ...mapState(cartStore, ['carts']),
   },
   methods: {
-    // getCarts() {
-    //   this.$http
-    //     .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`)
-    //     .then((res) => {
-    //       console.log("取得購物車列表", res.data.data);
-    //       this.carts = res.data.data;
-    //       console.log("有被存入", this.carts);
-    //     })
-    //     .catch((err) => {
-    //       alert(err.response.data);
-    //     });
-
-    // },
+    ...mapActions(cartStore,['getCarts']),
     updateCartItem(item) {
       //購物車的id、產品的id
       const data = {
@@ -220,6 +207,9 @@ export default {
       console.log("取得優惠券", this.coupon);
     },
   },
+  mounted(){
+      this.getCarts();
+  }
 };
 </script>
 

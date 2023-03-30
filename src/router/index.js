@@ -17,7 +17,7 @@ const routes = [
     component: () => import('../views/Front/FoodView.vue')
   },
   {
-    path: '/FoodDetail',
+    path: '/FoodDetail/:id',
     name: 'FoodDetail',
     component: () => import('../views/Front/FoodDetailView.vue')
   },

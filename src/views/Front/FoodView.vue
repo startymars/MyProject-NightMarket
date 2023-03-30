@@ -10,8 +10,12 @@
       >
         <nav aria-label="breadcrumb" class="pt-5 pb-5">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">首頁</a></li>
-            <li class="breadcrumb-item active" aria-current="page">美食報報</li>
+            <li class="breadcrumb-item">
+              <router-link to="/">首頁</router-link>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              美食報報
+            </li>
           </ol>
         </nav>
         <div class="dropdown">
@@ -71,18 +75,18 @@
           <div class="row">
             <div
               class="col-lg-4 col-md-6 mb-3"
-              v-for="item in foodProducts"
+              v-for="item in products"
               :key="item.id"
             >
               <div class="product">
                 <div class="productImg">
-                  <a href="#">
+                  <router-link :to="`/FoodDetail/${item.id}`">
                     <img
                       :src="item.imageUrl"
                       class="img-fluid foodImg"
                       alt="foodImg"
                     />
-                  </a>
+                  </router-link>
                   <div class="productTag d-flex flex-column">
                     <span class="fw-bold">{{ item.category[0] }}</span>
                     <span class="fw-bold">{{ item.category[1] }}</span>
@@ -94,9 +98,9 @@
                   <div
                     class="title d-flex justify-content-between align-items-center"
                   >
-                    <a href="#">
+                     <router-link :to="`/FoodDetail/${item.id}`">
                       <h3 class="fw-bold fs-5 mb-2">{{ item.title }}</h3>
-                    </a>
+                     </router-link>
                     <div class="productIcon">
                       <a href="#">
                         <span class="material-symbols-outlined">favorite</span>
@@ -132,11 +136,13 @@
 <script>
 import HeaderNav from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
-const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
+import productStore from "@/stores/productStore.js";
+import cartStore from "@/stores/cartStore.js";
+import { mapActions, mapState } from "pinia";
+// const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
 export default {
   data() {
     return {
-      foodProducts: [],
       qty: 1,
     };
   },
@@ -144,33 +150,15 @@ export default {
     HeaderNav,
     FooterView,
   },
+  computed: {
+    ...mapState(productStore, ["products"]),
+  },
   methods: {
-    addToCart(product_id, qty = 1) {
-      const data = {
-        product_id, //同名不寫第二次
-        qty,
-      };
-      this.$http
-        .post(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`, { data })
-        .then((res) => {
-          console.log("加入購物車:", res.data)
-          this.getCarts();
-        })
-        .catch((err) => {
-          console.log(err.data);
-        });
-    },
+    ...mapActions(productStore, ["getProducts"]),
+    ...mapActions(cartStore, ["addToCart"]),
   },
   mounted() {
-    this.$http
-      .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/products/all`)
-      .then((res) => {
-        console.log(res.data);
-        this.foodProducts = res.data.products;
-      })
-      .catch((err) => {
-        alert(err.response.data);
-      });
+    this.getProducts();
   },
 };
 </script>
@@ -204,6 +192,7 @@ export default {
   background-position: center center;
   background-size: cover;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .productTag {
