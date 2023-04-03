@@ -542,7 +542,7 @@ $aspect-ratios: (
 
 // scss-docs-start font-variables
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      system-ui, -apple-system, "Noto Sans","Segoe UI", Roboto, "Helvetica Neue", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-sans-serif:      system-ui, -apple-system, "Noto Serif TC","Segoe UI", Roboto, "Helvetica Neue", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 // stylelint-enable value-keyword-case
 $font-family-base:            var(--#{$prefix}font-sans-serif) !default;
@@ -1069,11 +1069,13 @@ $nav-link-transition:               color .15s ease-in-out, background-color .15
 $nav-link-disabled-color:           $gray-600 !default;
 
 $nav-tabs-border-color:             $gray-300 !default;
-$nav-tabs-border-width:             $border-width !default;
-$nav-tabs-border-radius:            $border-radius !default;
+// $nav-tabs-border-width:             $border-width !default;
+$nav-tabs-border-width:             0px;
+// $nav-tabs-border-radius:            $border-radius !default;
+$nav-tabs-border-radius:             0px !default;
 $nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color !default;
-$nav-tabs-link-active-color:        $gray-700 !default;
-$nav-tabs-link-active-bg:           $body-bg !default;
+$nav-tabs-link-active-color:        $white !default;
+$nav-tabs-link-active-bg:           $warn-primary !default;
 $nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
 
 $nav-pills-border-radius:           $border-radius !default;

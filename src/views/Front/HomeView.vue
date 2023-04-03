@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <HeaderNav />
+    <Loading />
     <div class="swiper">
       <swiper
         :spaceBetween="30"
@@ -71,9 +72,11 @@
             </div>
           </div>
           <div class="col-2 offset-3">
-            <button type="button" class="rounded-circle">
-              <img src="/src/assets/button.png" width="100" alt="前往商品" />
-            </button>
+            <router-link to="/Food">
+              <button type="button" class="rounded-circle">
+                <img src="/src/assets/button.png" width="100" alt="前往商品" />
+              </button>
+            </router-link>
           </div>
         </div>
       </div>
@@ -261,12 +264,21 @@
             :modules="modules"
             class="mySwiper"
           >
-            <swiper-slide class="childSelect" v-for="item in cartegory" :key="item">
+            <swiper-slide
+              class="childSelect"
+              v-for="item in cartegory"
+              :key="item"
+            >
               <div class="chooseSelect">
                 <router-link to="/Food">
-                  <img src="https://images.unsplash.com/photo-1492683513054-55277abccd99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA0fHxkZXNzZXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="">
-                  <div class="chooseName fw=bold text-center fs-5">{{item}}</div>
-                </router-link>  
+                  <img
+                    src="https://images.unsplash.com/photo-1492683513054-55277abccd99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA0fHxkZXNzZXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+                    alt=""
+                  />
+                  <div class="chooseName fw=bold text-center fs-5">
+                    {{ item }}
+                  </div>
+                </router-link>
               </div>
             </swiper-slide>
           </swiper>
@@ -279,7 +291,7 @@
           <div>Yummy Yummy</div>
           <div class="h3 fw-bold mt-3">人氣美食</div>
         </div>
-        <div class="row">
+        <div class="row mx-auto">
           <div
             class="col-lg-4 col-md-6 mb-5"
             v-for="item in products"
@@ -287,11 +299,7 @@
           >
             <div class="productImg">
               <router-link :to="`/FoodDetail/${item.id}`">
-                <img
-                  :src="item.imageUrl"
-                  class="img-fluid foodImg"
-                  alt="foodImg"
-                />
+                <img :src="item.imageUrl" class="img-fluid" alt="foodImg" />
               </router-link>
               <div class="productTag d-flex flex-column">
                 <span class="fw-bold">{{ item.category[0] }}</span>
@@ -307,15 +315,20 @@
                     {{ item.title }}
                   </h3></router-link
                 >
-                <div class="productIcon">
-                  <a href="#" @click="addToCart(item.id, 1)">
+                <div class="d-flex">
+                  <a href="#" @click.prevent @click="addToCart(item.id, 1)">
                     <span class="material-symbols-outlined me-2"
                       >shopping_cart</span
                     >
                   </a>
-                  <a href="#">
-                    <span class="material-symbols-outlined">favorite</span>
+                  <a href="#" v-if="!isFavorite"  @click.prevent  @click="favoriteProducts(item)">
+                    <span
+                      class="material-symbols-outlined d-block"
+                      @click="clickFavorite"
+                      >favorite</span
+                    >
                   </a>
+                  <a href="#" @click.prevent v-else @click="deleteFavoriteProducts(item)"> <span class="material-icons" @click="clickFavorite">favorite</span></a>
                 </div>
               </div>
               <div class="description d-flex flex-column justify-content-start">
@@ -339,6 +352,7 @@
 <script>
 import HeaderNav from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import Loading from "@/components/marketLoading.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Navigation, Pagination } from "swiper";
 import productStore from "@/stores/productStore.js";
@@ -354,6 +368,7 @@ const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
 export default {
   data() {
     return {
+      isFavorite: false,
       cartegory: [],
       modules: [Autoplay, Navigation, Pagination],
     };
@@ -361,24 +376,31 @@ export default {
   components: {
     HeaderNav,
     FooterView,
+    Loading,
     Swiper,
     SwiperSlide,
   },
   computed: {
     ...mapState(productStore, ["products"]),
+    ...mapState(productStore, ["isLoading"]),
   },
   methods: {
     ...mapActions(productStore, ["getProducts"]),
     ...mapActions(cartStore, ["addToCart"]),
+    ...mapActions(productStore, ["favoriteProducts"]),
+    ...mapActions(productStore, ["deleteFavoriteProducts"]),
+    clickFavorite() {
+      this.isFavorite = !this.isFavorite;
+    },
     categorys() {
       this.$http
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/products/all`)
         .then((res) => {
           console.log("取得該產品", res.data.products);
-          this.cartegory=res.data.products;
-          const newCategory = this.cartegory.map(person => person.category);
-          const uniqueArr=[...new Set(newCategory)];
-          this.cartegory=uniqueArr;
+          this.cartegory = res.data.products;
+          const newCategory = this.cartegory.map((food) => food.category);
+          const uniqueArr = [...new Set(newCategory)];
+          this.cartegory = uniqueArr;
           console.log(this.cartegory);
         })
         .catch((err) => {
@@ -394,9 +416,6 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  font-family: "Noto Serif TC";
-}
 ul {
   list-style: none;
 }
@@ -493,13 +512,23 @@ ul {
   position: relative;
   max-width: 100%;
 }
+
+.productImg img {
+  width: 100%;
+  height: 250px;
+  background-position: center center;
+  background-size: cover;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 .productTag {
   position: absolute;
   background-color: #000000;
   color: #fff;
   padding: 4px;
   top: -5%;
-  right: 2%;
+  right: -2%;
 }
 
 .bgHistory {
@@ -593,14 +622,6 @@ ul {
   padding: 6%;
 }
 
-.foodImg {
-  width: 400px;
-  height: 300px;
-  background-position: center center;
-  background-size: cover;
-  object-fit: cover;
-  border-radius: 10px;
-}
 .productDetail {
   width: 100%;
   overflow: hidden;

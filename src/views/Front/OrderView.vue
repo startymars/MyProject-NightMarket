@@ -77,14 +77,14 @@
               </div>
               <div class="row">
                 <div class="col-6 mb-3">
-                  <button type="submit" class="btn btn-lg btn-outline-primary">
-                    回上一頁
-                  </button>
+                  <router-link to="/Cart">
+                    <button type="button" class="btn btn-outline-primary">
+                      回上一頁
+                    </button>
+                  </router-link>
                 </div>
                 <div class="col-6 mb-3">
-                  <button type="submit" class="btn btn-lg btn-primary">
-                    結帳
-                  </button>
+                  <button type="button" class="btn btn-primary">結帳</button>
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@ export default {
     return {
       foodProducts: [],
       qty: 1,
-      carts:[],
+      carts: [],
       form: {
         user: {
           name: "",
@@ -155,8 +155,8 @@ export default {
       const phoneNumber = /^(09)[0-9]{8}$/;
       return phoneNumber.test(value) ? true : "需為正確的手機號碼格式";
     },
-    getCarts(){
-        this.$http
+    getCarts() {
+      this.$http
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`)
         .then((res) => {
           console.log("取得購物車列表", res.data.data);
@@ -191,7 +191,7 @@ export default {
 .newBanner {
   width: 100%;
   height: 300px;
-  background-image: url("https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fHdhcm4lMjBmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
+  background-image: url("https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDM4fHxmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
   background-repeat: no-repeat;
   background-position: center, center;
   background-size: cover;

@@ -15,15 +15,13 @@
           </li>
         </ol>
       </nav>
-      <div class="row mb-4">
-        <div class="col-lg-5 bg-primary">
-          <div class="productImg bg-danger">
-            <img
-              class="detailImg"
-              :src="detailProduct.imageUrl"
-              :alt="detailProduct.title"
-            />
-          </div>
+      <div class="row mx-auto mb-4">
+        <div class="col-lg-5">
+          <img
+            class="detailImg"
+            :src="detailProduct.imageUrl"
+            :alt="detailProduct.title"
+          />
         </div>
         <div class="col-lg-6 offset-lg-1">
           <ul class="p-0">
@@ -72,9 +70,13 @@
               加入購物車
             </button>
             <router-link to="/Cart">
-                <button class="btn btn-primary px-5 py-3 fw-bold" type="button" @click="addToCart(detailProduct.id, 1)">
+              <button
+                class="btn btn-primary px-5 py-3 fw-bold"
+                type="button"
+                @click="addToCart(detailProduct.id, 1)"
+              >
                 直接購買
-                </button>
+              </button>
             </router-link>
             <!-- <div class="px-5 py-3 fw-bold border border-primary border-1">
             <span class="material-symbols-outlined align-middle">favorite</span>
@@ -152,7 +154,6 @@
           :spaceBetween="20"
           :loop="true"
           :navigation="{
-           
             clickable: ture,
           }"
           :modules="modules"
@@ -161,8 +162,11 @@
           <swiper-slide v-for="item in products" :key="item.id">
             <div>
               <div class="otherImg mb-4">
-                <router-link :to="`/FoodDetail/${item.id}`" @click="DetailProduct">
-                <img :src="item.imageUrl" alt="推薦美食" />
+                <router-link
+                  :to="`/FoodDetail/${item.id}`"
+                  @click="DetailProduct"
+                >
+                  <img :src="item.imageUrl" alt="推薦美食" />
                 </router-link>
                 <div class="otherTag p bg-black text-white px-3 py-1">
                   {{ item.category }}
@@ -256,8 +260,6 @@ export default {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -272,14 +274,14 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-.productImg {
-  width: 400px;
-  height: 400px;
-}
+
 .detailImg {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 400px;
+  background-position: center center;
+  background-size: cover;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .otherImg {

@@ -63,7 +63,7 @@ export default {
 .newBanner {
   width: 100%;
   height: 300px;
-  background-image: url("https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fHdhcm4lMjBmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
+  background-image: url("https://images.unsplash.com/photo-1527598041828-aea5d622f3a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTY3fHxmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
   background-repeat: no-repeat;
   background-position: center, center;
   background-size: cover;

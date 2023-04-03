@@ -8,14 +8,16 @@
       <div class="cartClear d-flex justify-content-between align-items-center">
         <nav aria-label="breadcrumb" class="pt-5 pb-5">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><router-link to="/">首頁</router-link></li>
+            <li class="breadcrumb-item">
+              <router-link to="/">首頁</router-link>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">購物車</li>
           </ol>
         </nav>
         <div class="text-end mb-3">
           <button
             type="button"
-            class="btn btn-lg btn-outline-primary"
+            class="btn btn-outline-primary fs-5"
             @click="deleteCarts"
           >
             清空購物車
@@ -24,117 +26,143 @@
       </div>
 
       <div class="row">
-        <div class="col-8">
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="col"></th>
-                <th class="col">圖片</th>
-                <th class="col">商品名稱</th>
-                <th class="col">價格</th>
-                <th class="col">數量</th>
-                <th class="col">總價</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                style="vertical-align: middle"
-                v-for="item in carts.carts"
-                :key="item.id"
-              >
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-danger btn-sm"
-                    @click="deleteCartItem(item.id)"
-                  >
-                    <span class="material-symbols-outlined">clear</span>
-                  </button>
-                </td>
-                <td style="width: 150px">
-                  <div
-                    style="
-                      height: 100px;
-                      background-size: cover;
-                      background-position: center;
-                    "
-                    :style="{
-                      backgroundImage: `url(${item.product.imageUrl})`,
-                    }"
-                  ></div>
-                </td>
-                <td class="fs-6 fw-bold">{{ item.product.title }}</td>
-                <td>${{ item.product.price }}</td>
-                <td>
-                  <div class="input-group input-group-sm">
-                    <select
-                      name=""
-                      id=""
-                      class="form-control"
-                      v-model="item.qty"
-                      @change="updateCartItem(item)"
+        <template v-if="cartStatus">
+          <div class="col-8">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="col"></th>
+                  <th class="col">圖片</th>
+                  <th class="col">商品名稱</th>
+                  <th class="col">價格</th>
+                  <th class="col">數量</th>
+                  <th class="col">總價</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  style="vertical-align: middle"
+                  v-for="item in carts.carts"
+                  :key="item.id"
+                >
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger"
+                      @click="deleteCartItem(item.id)"
                     >
-                      <option :value="i" v-for="i in 10" :key="i + '12345'">
-                        {{ i }}
-                      </option>
-                    </select>
-                  </div>
-                </td>
-                <td>${{ item.total }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-4">
-          <div class="discount">
-            <div class="mb-3">
-              <label for="discount" class="form-label fw-bold h5"
-                >優惠券折扣</label
-              >
-              <input
-                type="text"
-                class="form-control p-3"
-                id="discount"
-                placeholder="輸入優惠代碼"
-                v-model="this.coupon"
-              />
-            </div>
-            <div class="text-end mb-3">
-              <button type="button" class="btn btn-primary" @click="useCoupon">
-                使用折扣
-              </button>
+                      <span class="material-symbols-outlined">clear</span>
+                    </button>
+                  </td>
+                  <td style="width: 150px">
+                    <div
+                      style="
+                        height: 100px;
+                        background-size: cover;
+                        background-position: center;
+                      "
+                      :style="{
+                        backgroundImage: `url(${item.product.imageUrl})`,
+                      }"
+                    ></div>
+                  </td>
+                  <td class="fs-6 fw-bold">{{ item.product.title }}</td>
+                  <td>${{ item.product.price }}</td>
+                  <td>
+                    <div class="input-group input-group-sm">
+                      <select
+                        name=""
+                        id=""
+                        class="form-control"
+                        v-model="item.qty"
+                        @change="updateCartItem(item)"
+                      >
+                        <option :value="i" v-for="i in 10" :key="i + '12345'">
+                          {{ i }}
+                        </option>
+                      </select>
+                    </div>
+                  </td>
+                  <td>${{ item.total }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </template>
+        <template v-else>
+          <div
+            class="col-12 d-flex p-5 mb-5 justify-content-center align-items-center text-center border border-dark rounded"
+          >
+            <div class="fs-3 align-middle">
+              目前購物車無任何商品唷！
+              <div class="mt-5">
+                <router-link to="/">
+                  <button type="button" class="btn btn-primary px-5">
+                    前往購物
+                  </button>
+                </router-link>
+              </div>
             </div>
           </div>
-          <div class="cartList p-3 mb-4">
-            <h5 class="mb-5">購物清單總計</h5>
-            <div class="cartTotal">
-              <div
-                class="cartOrigin d-flex justify-content-between align-items-center"
-              >
-                <p>原始價格</p>
-                <p>NT$100</p>
+        </template>
+        <template v-if="cartStatus">
+          <div class="col-4">
+            <div class="discount">
+              <div class="mb-3">
+                <label for="discount" class="form-label fw-bold h5"
+                  >優惠券折扣</label
+                >
+                <input
+                  type="text"
+                  class="form-control p-3"
+                  id="discount"
+                  placeholder="輸入優惠代碼"
+                  v-model="this.coupon"
+                />
               </div>
-              <div
-                class="cartDiscount d-flex justify-content-between align-items-center"
-              >
-                <p>折扣</p>
-                <p>-NT$30</p>
-              </div>
-              <hr />
-              <div
-                class="totalPrice mb-3 d-flex justify-content-between align-items-center"
-              >
-                <p class="fw-bold fs-6">總付款金額</p>
-                <p class="fw-bold">NT$450</p>
+              <div class="text-end mb-3">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  @click="useCoupon"
+                >
+                  使用折扣
+                </button>
               </div>
             </div>
-            <div class="text-end mb-3">
-              <router-link to="/Order">
-                <button type="button" class="btn btn-primary">前往付款</button>
-              </router-link>
+            <div class="cartList p-3 mb-4">
+              <h5 class="mb-5">購物清單總計</h5>
+              <div class="cartTotal">
+                <div
+                  class="cartOrigin d-flex justify-content-between align-items-center"
+                >
+                  <p>原始價格</p>
+                  <p>NT${{ carts.total }}</p>
+                </div>
+                <div
+                  class="cartDiscount d-flex justify-content-between align-items-center"
+                >
+                  <p>折扣</p>
+                  <p>-NT$0</p>
+                </div>
+                <hr />
+                <div
+                  class="totalPrice mb-3 d-flex justify-content-between align-items-center"
+                >
+                  <p class="fw-bold fs-6">總付款金額</p>
+                  <p class="fw-bold">NT${{ carts.final_total }}</p>
+                </div>
+              </div>
+              <div class="text-end mb-3">
+                <router-link to="/Order">
+                  <button type="button" class="btn btn-primary">
+                    前往付款
+                  </button>
+                </router-link>
+              </div>
             </div>
           </div>
-        </div>
+        </template>
       </div>
     </div>
   </div>
@@ -146,6 +174,7 @@ import HeaderNav from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
 import cartStore from "@/stores/cartStore.js";
 import { mapActions, mapState } from "pinia";
+// import Swal from 'sweetalert2';
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
 export default {
   data() {
@@ -158,10 +187,11 @@ export default {
     FooterView,
   },
   computed: {
-    ...mapState(cartStore, ['carts']),
+    ...mapState(cartStore, ["carts"]),
+    ...mapState(cartStore, ["cartStatus"]),
   },
   methods: {
-    ...mapActions(cartStore,['getCarts']),
+    ...mapActions(cartStore, ["getCarts"]),
     updateCartItem(item) {
       //購物車的id、產品的id
       const data = {
@@ -185,6 +215,12 @@ export default {
         .delete(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart/${item}`)
         .then((res) => {
           console.log("刪除購物車品項", res.data);
+          // Swal.fire({
+          //   title: "Error!",
+          //   text: "產品已刪除",
+          //   icon: "success",
+          //   showConfirmButton: true,
+          // });
           this.getCarts();
         })
         .catch((err) => {
@@ -207,9 +243,9 @@ export default {
       console.log("取得優惠券", this.coupon);
     },
   },
-  mounted(){
-      this.getCarts();
-  }
+  mounted() {
+    this.getCarts();
+  },
 };
 </script>
 
@@ -217,7 +253,7 @@ export default {
 .newBanner {
   width: 100%;
   height: 300px;
-  background-image: url("https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fHdhcm4lMjBmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
+  background-image: url("https://images.unsplash.com/photo-1529411081224-84ac0d0bf6ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjg1fHxmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
   background-repeat: no-repeat;
   background-position: center, center;
   background-size: cover;
