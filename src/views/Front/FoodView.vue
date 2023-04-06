@@ -275,7 +275,79 @@
             role="tabpanel"
             aria-labelledby="food-tab"
           >
-            333
+            <div class="row">
+              <div
+                class="col-lg-3 col-md-6 mb-3"
+                v-for="item in foodTab"
+                :key="item.id"
+              >
+                <div class="product">
+                  <div class="productImg">
+                    <router-link :to="`/FoodDetail/${item.id}`">
+                      <img
+                        :src="item.imageUrl"
+                        class="img-fluid"
+                        alt="foodImg"
+                      />
+                    </router-link>
+                    <div class="productTag d-flex flex-column">
+                      <span class="fw-bold">{{ item.category[0] }}</span>
+                      <span class="fw-bold">{{ item.category[1] }}</span>
+                    </div>
+                  </div>
+                  <div
+                    class="productDetail d-flex flex-column justify-content-center pt-2 mb-3"
+                  >
+                    <div
+                      class="title d-flex justify-content-between align-items-center"
+                    >
+                      <router-link :to="`/FoodDetail/${item.id}`">
+                        <h3 class="fw-bold fs-5 mb-2">{{ item.title }}</h3>
+                      </router-link>
+                      <div class="productIcon">
+                        <a
+                          href="#"
+                          v-if="!isFavorite"
+                          @click.prevent
+                          @click="favoriteProducts(item)"
+                        >
+                          <span
+                            class="material-symbols-outlined d-block"
+                            @click="clickFavorite"
+                            >favorite</span
+                          >
+                        </a>
+                        <a
+                          href="#"
+                          @click.prevent
+                          v-else
+                          @click="deleteFavoriteProducts(item)"
+                        >
+                          <span class="material-icons" @click="clickFavorite"
+                            >favorite</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                    <div class="price fs-6 mb-2">
+                      NT${{ item.price }}
+                      <small
+                        ><del>NT${{ item.origin_price }}</del></small
+                      >
+                    </div>
+                    <div class="d-grid gap-2">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary p-2"
+                        @click="addToCart(item.id, 1)"
+                      >
+                        加入購物車
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div
             class="tab-pane fade"
@@ -283,7 +355,79 @@
             role="tabpanel"
             aria-labelledby="fried-tab"
           >
-            444
+            <div class="row">
+              <div
+                class="col-lg-3 col-md-6 mb-3"
+                v-for="item in friedTab"
+                :key="item.id"
+              >
+                <div class="product">
+                  <div class="productImg">
+                    <router-link :to="`/FoodDetail/${item.id}`">
+                      <img
+                        :src="item.imageUrl"
+                        class="img-fluid"
+                        alt="foodImg"
+                      />
+                    </router-link>
+                    <div class="productTag d-flex flex-column">
+                      <span class="fw-bold">{{ item.category[0] }}</span>
+                      <span class="fw-bold">{{ item.category[1] }}</span>
+                    </div>
+                  </div>
+                  <div
+                    class="productDetail d-flex flex-column justify-content-center pt-2 mb-3"
+                  >
+                    <div
+                      class="title d-flex justify-content-between align-items-center"
+                    >
+                      <router-link :to="`/FoodDetail/${item.id}`">
+                        <h3 class="fw-bold fs-5 mb-2">{{ item.title }}</h3>
+                      </router-link>
+                      <div class="productIcon">
+                        <a
+                          href="#"
+                          v-if="!isFavorite"
+                          @click.prevent
+                          @click="favoriteProducts(item)"
+                        >
+                          <span
+                            class="material-symbols-outlined d-block"
+                            @click="clickFavorite"
+                            >favorite</span
+                          >
+                        </a>
+                        <a
+                          href="#"
+                          @click.prevent
+                          v-else
+                          @click="deleteFavoriteProducts(item)"
+                        >
+                          <span class="material-icons" @click="clickFavorite"
+                            >favorite</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                    <div class="price fs-6 mb-2">
+                      NT${{ item.price }}
+                      <small
+                        ><del>NT${{ item.origin_price }}</del></small
+                      >
+                    </div>
+                    <div class="d-grid gap-2">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary p-2"
+                        @click="addToCart(item.id, 1)"
+                      >
+                        加入購物車
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div
             class="tab-pane fade"
@@ -291,7 +435,79 @@
             role="tabpanel"
             aria-labelledby="ice-tab"
           >
-            555
+            <div class="row">
+              <div
+                class="col-lg-3 col-md-6 mb-3"
+                v-for="item in iceTab"
+                :key="item.id"
+              >
+                <div class="product">
+                  <div class="productImg">
+                    <router-link :to="`/FoodDetail/${item.id}`">
+                      <img
+                        :src="item.imageUrl"
+                        class="img-fluid"
+                        alt="foodImg"
+                      />
+                    </router-link>
+                    <div class="productTag d-flex flex-column">
+                      <span class="fw-bold">{{ item.category[0] }}</span>
+                      <span class="fw-bold">{{ item.category[1] }}</span>
+                    </div>
+                  </div>
+                  <div
+                    class="productDetail d-flex flex-column justify-content-center pt-2 mb-3"
+                  >
+                    <div
+                      class="title d-flex justify-content-between align-items-center"
+                    >
+                      <router-link :to="`/FoodDetail/${item.id}`">
+                        <h3 class="fw-bold fs-5 mb-2">{{ item.title }}</h3>
+                      </router-link>
+                      <div class="productIcon">
+                        <a
+                          href="#"
+                          v-if="!isFavorite"
+                          @click.prevent
+                          @click="favoriteProducts(item)"
+                        >
+                          <span
+                            class="material-symbols-outlined d-block"
+                            @click="clickFavorite"
+                            >favorite</span
+                          >
+                        </a>
+                        <a
+                          href="#"
+                          @click.prevent
+                          v-else
+                          @click="deleteFavoriteProducts(item)"
+                        >
+                          <span class="material-icons" @click="clickFavorite"
+                            >favorite</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                    <div class="price fs-6 mb-2">
+                      NT${{ item.price }}
+                      <small
+                        ><del>NT${{ item.origin_price }}</del></small
+                      >
+                    </div>
+                    <div class="d-grid gap-2">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary p-2"
+                        @click="addToCart(item.id, 1)"
+                      >
+                        加入購物車
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div
             class="tab-pane fade"
@@ -299,7 +515,79 @@
             role="tabpanel"
             aria-labelledby="drink-tab"
           >
-            666
+            <div class="row">
+              <div
+                class="col-lg-3 col-md-6 mb-3"
+                v-for="item in drinkTab"
+                :key="item.id"
+              >
+                <div class="product">
+                  <div class="productImg">
+                    <router-link :to="`/FoodDetail/${item.id}`">
+                      <img
+                        :src="item.imageUrl"
+                        class="img-fluid"
+                        alt="foodImg"
+                      />
+                    </router-link>
+                    <div class="productTag d-flex flex-column">
+                      <span class="fw-bold">{{ item.category[0] }}</span>
+                      <span class="fw-bold">{{ item.category[1] }}</span>
+                    </div>
+                  </div>
+                  <div
+                    class="productDetail d-flex flex-column justify-content-center pt-2 mb-3"
+                  >
+                    <div
+                      class="title d-flex justify-content-between align-items-center"
+                    >
+                      <router-link :to="`/FoodDetail/${item.id}`">
+                        <h3 class="fw-bold fs-5 mb-2">{{ item.title }}</h3>
+                      </router-link>
+                      <div class="productIcon">
+                        <a
+                          href="#"
+                          v-if="!isFavorite"
+                          @click.prevent
+                          @click="favoriteProducts(item)"
+                        >
+                          <span
+                            class="material-symbols-outlined d-block"
+                            @click="clickFavorite"
+                            >favorite</span
+                          >
+                        </a>
+                        <a
+                          href="#"
+                          @click.prevent
+                          v-else
+                          @click="deleteFavoriteProducts(item)"
+                        >
+                          <span class="material-icons" @click="clickFavorite"
+                            >favorite</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                    <div class="price fs-6 mb-2">
+                      NT${{ item.price }}
+                      <small
+                        ><del>NT${{ item.origin_price }}</del></small
+                      >
+                    </div>
+                    <div class="d-grid gap-2">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary p-2"
+                        @click="addToCart(item.id, 1)"
+                      >
+                        加入購物車
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div
             class="tab-pane fade"
@@ -307,7 +595,79 @@
             role="tabpanel"
             aria-labelledby="dessert-tab"
           >
-            777
+            <div class="row">
+              <div
+                class="col-lg-3 col-md-6 mb-3"
+                v-for="item in dessertTab"
+                :key="item.id"
+              >
+                <div class="product">
+                  <div class="productImg">
+                    <router-link :to="`/FoodDetail/${item.id}`">
+                      <img
+                        :src="item.imageUrl"
+                        class="img-fluid"
+                        alt="foodImg"
+                      />
+                    </router-link>
+                    <div class="productTag d-flex flex-column">
+                      <span class="fw-bold">{{ item.category[0] }}</span>
+                      <span class="fw-bold">{{ item.category[1] }}</span>
+                    </div>
+                  </div>
+                  <div
+                    class="productDetail d-flex flex-column justify-content-center pt-2 mb-3"
+                  >
+                    <div
+                      class="title d-flex justify-content-between align-items-center"
+                    >
+                      <router-link :to="`/FoodDetail/${item.id}`">
+                        <h3 class="fw-bold fs-5 mb-2">{{ item.title }}</h3>
+                      </router-link>
+                      <div class="productIcon">
+                        <a
+                          href="#"
+                          v-if="!isFavorite"
+                          @click.prevent
+                          @click="favoriteProducts(item)"
+                        >
+                          <span
+                            class="material-symbols-outlined d-block"
+                            @click="clickFavorite"
+                            >favorite</span
+                          >
+                        </a>
+                        <a
+                          href="#"
+                          @click.prevent
+                          v-else
+                          @click="deleteFavoriteProducts(item)"
+                        >
+                          <span class="material-icons" @click="clickFavorite"
+                            >favorite</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                    <div class="price fs-6 mb-2">
+                      NT${{ item.price }}
+                      <small
+                        ><del>NT${{ item.origin_price }}</del></small
+                      >
+                    </div>
+                    <div class="d-grid gap-2">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary p-2"
+                        @click="addToCart(item.id, 1)"
+                      >
+                        加入購物車
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -447,6 +807,21 @@ export default {
   },
   computed: {
     ...mapState(productStore, ["products"]),
+    foodTab() {
+      return this.products.filter((item) => item.category === "小吃");
+    },
+    friedTab() {
+      return this.products.filter((item) => item.category === "炸物");
+    },
+    iceTab() {
+      return this.products.filter((item) => item.category === "冰品");
+    },
+    drinkTab() {
+      return this.products.filter((item) => item.category === "飲料");
+    },
+    dessertTab() {
+      return this.products.filter((item) => item.category === "甜點");
+    },
   },
   methods: {
     // ...mapActions(productStore, ["getProducts"]),

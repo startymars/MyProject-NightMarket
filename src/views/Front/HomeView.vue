@@ -134,7 +134,16 @@
     <div class="container-fluid bg-origin">
       <div class="row">
         <div
-          class="col-lg-2 news borderLine d-flex flex-lg-column flex-column-reverse justify-content-lg-between align-items-lg-center"
+          class="col-lg-4 order-lg-3 news borderLine d-flex flex-lg-column justify-content-lg-between align-items-lg-center"
+        >
+          <div class="mainTitle fw-bold fs-1">
+            最新消息
+            <div class="mainTag fs-6">News</div>
+          </div>
+          <div class="newSubTitle mdSub">消息一覽</div>
+        </div>
+        <div
+          class="col-lg-2 order-lg-1 news borderLine d-flex flex-lg-column flex-column-reverse justify-content-lg-between align-items-lg-center"
         >
           <div class="newTitle fw-bold fs-3">新商店開幕</div>
           <div class="newSubTitle">十一月零陸號</div>
@@ -143,30 +152,22 @@
           </button>
         </div>
         <div
-          class="col-lg-2 news borderLine d-flex flex-lg-column flex-column-reverse justify-content-lg-between align-items-lg-center"
+          class="col-lg-2 order-lg-2 news borderLine d-flex flex-lg-column flex-column-reverse justify-content-lg-between align-items-lg-center"
         >
           <div class="newTitle fw-bold fs-3">
             12間必吃美食，跟著這篇絕對不會迷路
           </div>
           <div class="newSubTitle">十一月零陸號</div>
         </div>
+
         <div
-          class="col-lg-4 news borderLine d-flex text-center flex-lg-column justify-content-center align-items-center"
-        >
-          <div class="mainTitle fw-bold fs-3">
-            最新消息
-            <div class="mainTag fs-6">News</div>
-          </div>
-          <div class="newSubTitle">消息一覽</div>
-        </div>
-        <div
-          class="col-lg-2 news borderLine d-flex flex-lg-column flex-column-reverse justify-content-lg-between align-items-lg-center"
+          class="col-lg-2 order-lg-4 news borderLine d-flex flex-lg-column flex-column-reverse justify-content-lg-between align-items-lg-center"
         >
           <div class="newTitle fw-bold fs-3">新商店開幕</div>
           <div class="newSubTitle">十一月零陸號</div>
         </div>
         <div
-          class="col-lg-2 news borderLine d-flex flex-lg-column flex-column-reverse justify-content-lg-between align-items-lg-center"
+          class="col-lg-2 order-lg-5 news borderLine d-flex flex-lg-column flex-column-reverse justify-content-lg-between align-items-lg-center"
         >
           <div class="newTitle fw-bold fs-3">
             12間必吃美食，跟著這篇絕對不會迷路
@@ -321,14 +322,28 @@
                       >shopping_cart</span
                     >
                   </a>
-                  <a href="#" v-if="!isFavorite"  @click.prevent  @click="favoriteProducts(item)">
+                  <a
+                    href="#"
+                    v-if="!isFavorite"
+                    @click.prevent
+                    @click="favoriteProducts(item)"
+                  >
                     <span
                       class="material-symbols-outlined d-block"
                       @click="clickFavorite"
                       >favorite</span
                     >
                   </a>
-                  <a href="#" @click.prevent v-else @click="deleteFavoriteProducts(item)"> <span class="material-icons" @click="clickFavorite">favorite</span></a>
+                  <a
+                    href="#"
+                    @click.prevent
+                    v-else
+                    @click="deleteFavoriteProducts(item)"
+                  >
+                    <span class="material-icons" @click="clickFavorite"
+                      >favorite</span
+                    ></a
+                  >
                 </div>
               </div>
               <div class="description d-flex flex-column justify-content-start">
@@ -631,7 +646,13 @@ ul {
   -webkit-box-orient: vertical;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
+  .mainTitle {
+    -webkit-writing-mode: horizontal-tb;
+    writing-mode: horizontal-tb;
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
   .news {
     padding: 24px;
   }
@@ -642,9 +663,11 @@ ul {
     writing-mode: horizontal-tb;
   }
   .newSubTitle {
-    margin-bottom: 8px;
     -webkit-writing-mode: horizontal-tb;
     writing-mode: horizontal-tb;
+  }
+  .mdSub{
+    display: none;
   }
   .borderLine {
     border-bottom-style: dotted;
