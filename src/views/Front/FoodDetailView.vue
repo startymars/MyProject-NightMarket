@@ -15,7 +15,7 @@
           </li>
         </ol>
       </nav>
-      <div class="row mx-auto mb-4">
+      <div class="row mx-auto mb-5">
         <div class="col-lg-5">
           <img
             class="detailImg"
@@ -135,7 +135,7 @@
         </div>
       </div>
       <div class="recommend">
-        <div class="text-center h4 mb-5">推薦美食</div>
+        <div class="text-center h4 m-5">推薦美食</div>
         <swiper
           :slidesPerView="1"
           :breakpoints="{
@@ -175,7 +175,7 @@
 
               <div>
                 <h5 class="mt-2">{{ item.title }}</h5>
-                <p class="p-0" v-if="showLabel" @mouseover="showLabel = false">
+                <p class="p-0 mb-5" :class="{ 'hovered': showLabel }" v-if="showLabel" @mouseover="showLabel = false">
                   NT$
                   {{ item.price }}
                 </p>
@@ -228,6 +228,14 @@ export default {
     Swiper,
     SwiperSlide,
   },
+  watch: {
+    "$route.params": {
+      immediate: true,
+      handler() {
+        this.DetailProduct();
+      },
+    },
+  },
   computed: {
     ...mapState(productStore, ["products"]),
   },
@@ -243,7 +251,6 @@ export default {
         .then((res) => {
           console.log("取得該產品id", res.data.product);
           this.detailProduct = res.data.product;
-          console.log("888", this.detailProduct);
         })
         .catch((err) => {
           alert(err.response.data);

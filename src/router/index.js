@@ -27,9 +27,14 @@ const routes = [
     component: () => import('../views/Front/CartView.vue')
   },
   {
-    path: '/Order',
-    name: 'Order',
-    component: () => import('../views/Front/OrderView.vue')
+    path: '/Orders',
+    name: 'Orders',
+    component: () => import('../views/Front/OrdersView.vue')
+  },
+  {
+    path: '/OrdersFinish/:id',
+    name: 'OrdersFinish',
+    component: () => import('../views/Front/OrdersFinishView.vue')
   },
   {
     path: '/Favorite',

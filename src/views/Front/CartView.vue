@@ -154,7 +154,7 @@
                 </div>
               </div>
               <div class="text-end mb-3">
-                <router-link to="/Order">
+                <router-link to="/Orders">
                   <button type="button" class="btn btn-primary">
                     前往付款
                   </button>

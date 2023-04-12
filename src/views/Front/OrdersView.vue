@@ -12,50 +12,84 @@
         </ol>
       </nav>
       <div class="row">
-        <div class="col-8">
+        <div class="col-lg-8 mb-4">
           <h4>訂單資訊</h4>
           <hr />
-          <form>
+          <v-form ref="form" v-slot="{ errors }" @submit="createOrder"
+            >{{ errors }}
             <div class="row">
               <div class="mb-3 col-6">
                 <label for="name" class="form-label">收件人姓名</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
+                <v-field
+                  id="name"
+                  name="name"
+                  type="text"
                   class="form-control"
+                  :class="{ 'is-invalid': errors['姓名'] }"
+                  rules="required"
+                  v-model="form.user.name"
                   placeholder="請輸入您的姓名"
-                />
+                >
+                </v-field>
+                <error-message
+                  name="姓名"
+                  class="invalid-feedback"
+                ></error-message>
               </div>
               <div class="mb-3 col-6">
                 <label for="tel" class="form-label">收件人電話</label>
-                <input
+                <v-field
                   id="tel"
                   name="phone"
                   type="text"
                   class="form-control"
+                  :class="{ 'is-invalid': errors['電話'] }"
+                  :rules="isPhone"
+                  v-model="form.user.tel"
                   placeholder="請輸入您的電話"
-                />
+                >
+                </v-field>
+                <error-message
+                  name="電話"
+                  class="invalid-feedback"
+                ></error-message>
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">信箱</label>
-                <input
+                <v-field
                   id="email"
                   name="email"
                   type="email"
                   class="form-control"
+                  :class="{ 'is-invalid': errors['email'] }"
+                  rules="email|required"
+                  v-model="form.user.email"
                   placeholder="請輸入您的信箱"
-                />
+                >
+                </v-field>
+                <error-message
+                  name="email"
+                  class="invalid-feedback"
+                ></error-message>
               </div>
+
               <div class="mb-3">
                 <label for="emaaddressil" class="form-label">地址</label>
-                <input
+                <v-field
                   id="address"
                   name="address"
                   type="text"
                   class="form-control"
+                  :class="{ 'is-invalid': errors['地址'] }"
                   placeholder="請輸入您的地址"
-                />
+                  rules="required"
+                  v-model="form.user.address"
+                >
+                </v-field>
+                <error-message
+                  name="地址"
+                  class="invalid-feedback"
+                ></error-message>
               </div>
               <div class="mb-3">
                 <label for="pay" class="form-label">付款方式</label>
@@ -73,45 +107,50 @@
                   class="form-control"
                   cols="30"
                   rows="10"
+                  v-model="form.message"
                 ></textarea>
               </div>
-              <div class="row">
-                <div class="col-6 mb-3">
-                  <router-link to="/Cart">
-                    <button type="button" class="btn btn-outline-primary">
-                      回上一頁
-                    </button>
-                  </router-link>
-                </div>
-                <div class="col-6 mb-3">
-                  <button type="button" class="btn btn-primary">結帳</button>
-                </div>
+            </div>
+            <div class="row">
+              <div class="col-6 mb-3">
+                <router-link to="/Cart">
+                  <button type="button" class="btn btn-outline-primary">
+                    回上一頁
+                  </button>
+                </router-link>
+              </div>
+              <div class="col-6 mb-3">
+                <button type="submit" class="btn btn-primary">結帳</button>
               </div>
             </div>
-          </form>
+          </v-form>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4 mb-4">
           <div class="bg-primary p-4">
             <h4>你的訂單</h4>
             <hr />
-            <ul class="payDetai p-0">
-              <li class="d-flex justify-content-between mb-4">
+            <div class="payDetai p-0">
+              <div class="d-flex justify-content-between mb-4">
                 <h6 class="payTitle">商品</h6>
                 <h6 class="payTotal">總計</h6>
-              </li>
-              <li class="d-flex justify-content-between mb-4">
-                <div class="payNumber">
-                  1.
-                  <span class="payItem">壕大大炭烤雞排</span>
-                </div>
+              </div>
+              <ul
+                class="d-flex justify-content-between p-0 mb-4"
+                v-for="(item, index) in carts.carts"
+                :key="item.id"
+              >
+                <li class="payNumber">
+                  {{ index + 1 }}
+                  <span class="payItem">{{ item.product.title }}</span>
+                </li>
 
-                <div class="payPrice">NT$150</div>
-              </li>
-            </ul>
+                <li class="payPrice">NT${{ item.product.price }}</li>
+              </ul>
+            </div>
             <hr />
             <div class="payFinalTotal d-flex justify-content-between mb-4">
               <h5>總計</h5>
-              <div class="fw-bold">$900</div>
+              <div class="fw-bold">${{ carts.final_total }}</div>
             </div>
           </div>
         </div>
@@ -124,14 +163,12 @@
 <script>
 import HeaderNav from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
+import cartStore from "@/stores/cartStore.js";
+import { mapActions, mapState } from "pinia";
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
-
 export default {
   data() {
     return {
-      foodProducts: [],
-      qty: 1,
-      carts: [],
       form: {
         user: {
           name: "",
@@ -147,7 +184,11 @@ export default {
     HeaderNav,
     FooterView,
   },
+  computed: {
+    ...mapState(cartStore, ["carts"]),
+  },
   methods: {
+    ...mapActions(cartStore, ["getCarts"]),
     onSubmit() {
       console.log(this.form);
     },
@@ -159,9 +200,9 @@ export default {
       this.$http
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`)
         .then((res) => {
-          console.log("取得購物車列表", res.data.data);
+          console.log("233取得購物車列表", res.data.data);
           this.carts = res.data.data;
-          console.log("有被存入", this.carts);
+          console.log("999有被存入", this.carts);
         })
         .catch((err) => {
           alert(err.response.data);
@@ -177,13 +218,17 @@ export default {
           this.$refs.form.resetForm();
           this.form.message = "";
           this.getCarts();
+          const orderId=res.data.orderId;
+          this.$router.push(`/OrdersFinish/${orderId}`)
         })
         .catch((err) => {
           console.log(err.data);
         });
     },
   },
-  mounted() {},
+  mounted() {
+    this.getCarts();
+  },
 };
 </script>
 
