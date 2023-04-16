@@ -77,7 +77,7 @@
                         v-model="item.qty"
                         @change="updateCartItem(item)"
                       >
-                        <option :value="i" v-for="i in 10" :key="i + '12345'">
+                        <option :value="i" v-for="i in 30" :key="i + '12345'">
                           {{ i }}
                         </option>
                       </select>
@@ -245,6 +245,7 @@ export default {
   },
   mounted() {
     this.getCarts();
+    window.scrollTo(0, 0);
   },
 };
 </script>

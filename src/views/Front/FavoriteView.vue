@@ -93,6 +93,7 @@ export default {
       }else{
           this.favoriteStatus=false
       }
+      window.scrollTo(0, 0);
   }
 };
 </script>

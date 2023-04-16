@@ -47,7 +47,7 @@
               <span class="col-sm-2 col-form-label">數量：</span>
               <div class="col-sm-10">
                 <span>
-                  <select name="" id="" class="form-control">
+                  <select name="" id="" class="form-control"  v-model="productQty">
                     <option :value="i" v-for="i in 10" :key="i + '12345'">
                       {{ i }}
                     </option>
@@ -55,17 +55,12 @@
                 </span>
               </div>
             </div>
-            <!-- <span class="px-1 py-2 fw-bold border border-primary border-1 mb-3">
-              <span class="material-icons align-middle"> remove </span>
-              <span class="align-middle px-5 fs-5">2</span>
-              <span class="material-icons align-middle"> add </span>
-            </span> -->
           </div>
           <div class="d-lg-flex justify-content-start">
             <button
               class="btn btn-outline-primary px-5 py-3 me-3 fw-bold"
               type="button"
-              @click="addToCart(detailProduct.id, 1)"
+              @click="addToCart(detailProduct.id, productQty)"
             >
               加入購物車
             </button>
@@ -218,6 +213,7 @@ export default {
   data() {
     return {
       detailProduct: [],
+      productQty:1,
       modules: [Navigation],
       showLabel: true,
     };
@@ -233,6 +229,7 @@ export default {
       immediate: true,
       handler() {
         this.DetailProduct();
+        window.scrollTo(0, 0);
       },
     },
   },
@@ -260,6 +257,7 @@ export default {
   mounted() {
     this.DetailProduct();
     this.getProducts();
+    window.scrollTo(0, 0);
   },
 };
 </script>

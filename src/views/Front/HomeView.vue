@@ -145,7 +145,7 @@
         <div
           class="col-lg-2 order-lg-1 news borderLine d-flex flex-lg-column flex-column-reverse justify-content-lg-between align-items-lg-center"
         >
-          <div class="newTitle fw-bold fs-3">新商店開幕</div>
+          <div class="newTitle fw-bold fs-3">新商店開幕了</div>
           <div class="newSubTitle">十一月零陸號</div>
           <button type="button" class="newButton btn btn-primary">
             Primary
@@ -426,6 +426,7 @@ export default {
   mounted() {
     this.getProducts();
     this.categorys();
+    window.scrollTo(0, 0);
   },
 };
 </script>
