@@ -30,7 +30,7 @@
       </swiper>
       <div class="container nightMarket">
         <div class="row justify-content-between align-items-end">
-          <div class="col-7">
+          <div class="col-md-7">
             <div class="MainName mb-3">
               <img
                 src="/src/assets/B臨.png"
@@ -71,65 +71,34 @@
               />
             </div>
           </div>
-          <div class="col-2 offset-3">
-            <router-link to="/Food">
-              <button type="button" class="rounded-circle">
-                <img src="/src/assets/button.png" width="100" alt="前往商品" />
-              </button>
-            </router-link>
+          <div class="col-md-2 offset-md-3">
+            <div class="btn-page">
+              <router-link to="/Food">
+                <button type="button" class="rounded-circle">
+                  <img
+                    src="/src/assets/button.png"
+                    width="100"
+                    alt="前往商品"
+                  />
+                </button>
+              </router-link>
+            </div>
+            <div class="btn-md-page mt-3">
+              <router-link to="/Food">
+                <button type="button" class="rounded-pill ps-3 pe-3">
+                  <span class="fw-bold">探索美食
+                    <img
+                    src="/src/assets/button.png"
+                    width="40"
+                    alt="前往商品"
+                  />
+                  </span>
+                </button>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
-      <!-- <div class="nightMarket container">
-        <div class="row justify-content-lg-between align-items-end">
-          <div class="col-10">
-            <div class="MainName mb-3">
-              <img
-                src="/src/assets/B臨.png"
-                alt="臨江觀光夜市"
-                class="border border-white border-2"
-              />
-              <img
-                src="/src/assets/B江.png"
-                alt="臨江觀光夜市"
-                class="border border-white border-2"
-              />
-              <img
-                src="/src/assets/B街.png"
-                alt="臨江觀光夜市"
-                class="border border-white border-2"
-              />
-            </div>
-            <div class="subName">
-              <img
-                src="/src/assets/B觀.png"
-                alt="臨江觀光夜市"
-                class="border border-white border-2"
-              />
-              <img
-                src="/src/assets/B光.png"
-                alt="臨江觀光夜市"
-                class="border border-white border-2"
-              />
-              <img
-                src="/src/assets/B夜.png"
-                alt="臨江觀光夜市"
-                class="border border-white border-2"
-              />
-              <img
-                src="/src/assets/B市.png"
-                alt="臨江觀光夜市"
-                class="border border-white border-2"
-              />
-            </div>
-          </div>
-          <div class="col-2 clickProduct">
-            <button type="button" class="rounded-circle">
-              <img src="/src/assets/button.png" alt="前往商品" />
-            </button>
-          </div>
-        </div>
-      </div> -->
     </div>
     <div class="container-fluid bg-origin">
       <div class="row">
@@ -178,52 +147,58 @@
     </div>
     <div class="bgHistory">
       <div class="container">
-        <div
-          class="historyCulture d-flex flex-row-reverse justify-content-lg-evenly"
-        >
-          <div class="historyText">
-            歷史文化
-            <div class="historyTag fs-3">納涼的</div>
-          </div>
-          <div class="historyDetail">
-            /<br />夜市在臺灣，有超過100年的歷史。通常是因為當地的交通方便，或是有遼闊場地以及多人群聚集而加以形成。
-            <br /><br />據《臺灣日日新報》資料，1908年，有人在鳳山廳旗津天后宮廟前空地設夜市，營業時間為18時至24時。<br /><br />
-            此外，日治時期的納涼（日語：納涼）會活動也影響了後續臺灣夜市的發展
-          </div>
-          <div class="historySmallImg d-flex">
-            <img src="/src/assets/history-2.png" alt="history2" />
-            <img src="/src/assets/history-3.png" alt="history3" />
-            <img src="/src/assets/history-4.png" alt="history4" />
-          </div>
-        </div>
-        <div
-          class="marketCulture d-lg-flex justify-content-lg-between align-items-start"
-        >
-          <div class="historyImg"></div>
-          <div class="marketText">
-            夜市文化
-            <div class="marketTag fs-3">台灣的</div>
-          </div>
-          <div class="marketDetail">
-            <div class="subDetail">
-              /<br />台灣小吃與夜市文化更是獨步全球，種類多樣化，是台灣人生活中最具代表性的飲食文化，舉凡蚵仔煎、蚵仔麵線、臭豆腐、炒米粉、大餅包小餅、萬巒豬腳、大腸蚵仔麵線、甜不辣、台南但仔麵…等,皆是台灣風味獨特的小吃名食，價位便宜又好吃，並且可以吃出該地的人文特色。
-              <br /><br />此外，夜市也是台灣飲食的特殊的文化，每個夜市充斥琳瑯滿目的特產與小吃美食，各有不同的特色與風味。<br /><br />透過地方小吃，遊客可以更認識地方特產、文化與人文典故。因此，遊台灣，別錯過了精采絕倫的「夜市文化」!
+        <div class="row">
+          <div class="col-sm-9 offset-sm-3">
+            <div
+              class="historyCulture text-white d-flex justify-content-between"
+            >
+              <div class="historyDetail">
+                /<br />夜市在臺灣，有超過100年的歷史。通常是因為當地的交通方便，或是有遼闊場地以及多人群聚集而加以形成。
+                <br /><br />據《臺灣日日新報》資料，1908年，有人在鳳山廳旗津天后宮廟前空地設夜市，營業時間為18時至24時。<br /><br />
+                此外，日治時期的納涼（日語：納涼）會活動也影響了後續臺灣夜市的發展
+              </div>
+              <div class="historyText">
+                歷史文化
+                <div class="fs-3">納涼的</div>
+              </div>
             </div>
-            <ul class="marketCount d-flex">
-              <li class="text-center border-end">
-                <div class="nCount fs-3 fw-bold mb-2">36</div>
+          </div>
+          <div class="col-md-10 mb-4">
+            <div class="text-white d-flex justify-content-between">
+              <!-- <div class="image-container">
+                <img
+                  src="/src/assets/carouselImg.png"
+                  alt="your-image-description"
+                />
+              </div> -->
+              <div class="marketText">
+                夜市文化
+                <div class="marketTag fs-3">台灣的</div>
+              </div>
+              <div class="marketDetail">
+                <div class="subDetail">
+                  /<br />台灣小吃與夜市文化更是獨步全球，種類多樣化，是台灣人生活中最具代表性的飲食文化，舉凡蚵仔煎、蚵仔麵線、臭豆腐、炒米粉、大餅包小餅、萬巒豬腳、大腸蚵仔麵線、甜不辣、台南但仔麵…等,皆是台灣風味獨特的小吃名食，價位便宜又好吃，並且可以吃出該地的人文特色。
+                  <br /><br />透過地方小吃，遊客可以更認識地方特產、文化與人文典故。因此，遊台灣，別錯過了精采絕倫的「夜市文化」!
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-11 offset-sm-1 mb-5">
+            <ul class="d-flex justify-content-evenly text-white">
+              <li class="text-center">
+                <div class="counter fs-2 fw-bold mb-2">36</div>
                 <div class="nCity">北部</div>
               </li>
-              <li class="text-center border-end">
-                <div class="nCount fs-3 fw-bold mb-2">49</div>
+              <li class="text-center">
+                <div class="counter fs-2 fw-bold mb-2">49</div>
                 <div class="nCity">中部</div>
               </li>
-              <li class="text-center border-end">
-                <div class="nCount fs-3 fw-bold mb-2">52</div>
+              <li class="text-center">
+                <div class="counter fs-2 fw-bold mb-2">52</div>
                 <div class="nCity">南部</div>
               </li>
               <li class="text-center">
-                <div class="nCount fs-3 fw-bold mb-2">24</div>
+                <div class="counter fs-2 fw-bold mb-2">24</div>
                 <div class="nCity">東部</div>
               </li>
             </ul>
@@ -231,7 +206,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-white">
+    <!-- <div class="bg-white">
       <div class="container">
         <div class="h3 fw-bold text-center mb-5 mt-4">商品種類</div>
         <div class="foodSelect mb-4">
@@ -273,7 +248,7 @@
               <div class="chooseSelect">
                 <router-link to="/Food">
                   <img
-                    src="https://images.unsplash.com/photo-1492683513054-55277abccd99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA0fHxkZXNzZXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+                    src="https://images.unsplash.com/photo-1535898331935-2d274aff0fbc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bmlnaHQlMjBtYXJrZXR8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
                     alt=""
                   />
                   <div class="chooseName fw=bold text-center fs-5">
@@ -285,7 +260,7 @@
           </swiper>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="bg-secondary">
       <div class="container">
         <div class="productTopic p-5 text-center">
@@ -302,27 +277,32 @@
               <router-link :to="`/FoodDetail/${item.id}`">
                 <img :src="item.imageUrl" class="img-fluid" alt="foodImg" />
               </router-link>
-              <div class="productTag d-flex flex-column">
-                <span class="fw-bold">{{ item.category[0] }}</span>
-                <span class="fw-bold">{{ item.category[1] }}</span>
+              <div class="overlay">
+                <button
+                  type="button"
+                  class="btn btn-primary add-to-cart fs-5"
+                  @click.prevent
+                  @click="addToCart(item.id, 1)"
+                >
+                  加入購物車
+                </button>
               </div>
             </div>
             <div class="productContent mt-3">
               <div
-                class="title d-flex justify-content-between align-items-center"
+                class="title d-flex justify-content-start align-items-center"
               >
                 <router-link :to="`/FoodDetail/${item.id}`">
-                  <h3 class="cardTitle fw-bold">
+                  <h3 class="cardTitle fw-bold me-2">
                     {{ item.title }}
                   </h3></router-link
                 >
-                <div class="d-flex">
-                  <a href="#" @click.prevent @click="addToCart(item.id, 1)">
-                    <span class="material-symbols-outlined me-2"
-                      >shopping_cart</span
-                    >
-                  </a>
-                  <a
+
+                <div class="productTag">
+                  <span class="fw-bold">{{ item.category[0] }}</span>
+                  <span class="fw-bold">{{ item.category[1] }}</span>
+                </div>
+                <!-- <a
                     href="#"
                     v-if="!isFavorite"
                     @click.prevent
@@ -343,8 +323,7 @@
                     <span class="material-icons" @click="clickFavorite"
                       >favorite</span
                     ></a
-                  >
-                </div>
+                  > -->
               </div>
               <div class="description d-flex flex-column justify-content-start">
                 <p class="productDetail">{{ item.description }}</p>
@@ -398,6 +377,11 @@ export default {
   computed: {
     ...mapState(productStore, ["products"]),
     ...mapState(productStore, ["isLoading"]),
+    counterValue: {
+      get() {
+        return this.startNumber;
+      },
+    },
   },
   methods: {
     ...mapActions(productStore, ["getProducts"]),
@@ -426,7 +410,7 @@ export default {
   mounted() {
     this.getProducts();
     this.categorys();
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); //頁面置頂
   },
 };
 </script>
@@ -460,7 +444,7 @@ ul {
 .nightMarket {
   width: 100%;
   position: absolute;
-  top: 65%;
+  bottom: 5%;
   left: 0;
   right: 0;
   z-index: 1;
@@ -474,6 +458,9 @@ ul {
   width: 100px;
   height: auto;
   margin-right: 1rem;
+}
+.btn-md-page{
+  display: none;
 }
 .newButton {
   display: none;
@@ -516,7 +503,7 @@ ul {
 .swiper-slide img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 800px;
   object-fit: cover;
 }
 .borderLine {
@@ -526,45 +513,76 @@ ul {
 
 .productImg {
   position: relative;
-  max-width: 100%;
+  overflow: hidden;
 }
 
 .productImg img {
+  display: block;
   width: 100%;
   height: 250px;
   background-position: center center;
   background-size: cover;
   object-fit: cover;
   border-radius: 10px;
+  transition: transform 0.3s ease-out;
+}
+
+.productImg:hover img {
+  transform: scale(1.2);
+  opacity: 0.6;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+  z-index: 2;
+}
+
+.add-to-cart {
+  position: absolute;
+  bottom: 40%;
+  right: 25%;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: none; /* 初始狀態隱藏 */
+}
+
+.overlay:hover .add-to-cart {
+  display: block; /* hover時顯示 */
 }
 
 .productTag {
-  position: absolute;
   background-color: #000000;
   color: #fff;
-  padding: 4px;
-  top: -5%;
-  right: -2%;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .bgHistory {
   background-image: url("/src/assets/history.png");
   background-repeat: no-repeat;
   background-size: cover;
-  color: #fff;
+  width: 100%;
 }
 
 .historyCulture {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 311px;
+  margin-top: 200px;
+  margin-bottom: 200px;
 }
 
 .historyText {
   position: relative;
   font-size: 5rem;
   font-weight: bold;
-  margin-top: 168px;
   -webkit-writing-mode: vertical-lr;
   writing-mode: vertical-lr;
   z-index: 1;
@@ -577,16 +595,30 @@ ul {
   color: #919191;
   font-size: 20px;
   right: 35%;
-  bottom: -20%;
+  bottom: -30%;
 }
-
 .historyDetail {
-  margin-top: 320px;
-  width: 526px;
-  margin-right: 316px;
+  width: 400px;
   font-size: 20px;
   z-index: 2;
 }
+.marketDetail {
+  width: 70%;
+}
+
+@media (max-width: 576px) {
+  /* 設定當裝置寬度小於或等於768px時的CSS樣式 */
+  .historyText::after {
+    display: none;
+  }
+  .historyDetail {
+    margin-top: 200px;
+  }
+  .marketDetail {
+    margin-top: 200px;
+  }
+}
+
 .historySmallImg {
   max-width: 100%;
   max-height: 100%;
@@ -595,47 +627,41 @@ ul {
   left: 15%;
 }
 
-.marketCulture {
-  position: relative;
-}
-
-.historyImg {
-  background-image: url("/src/assets/carouselImg.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 800px;
+.subDetail {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 50px;
   width: 100%;
 }
 
-.marketDetail {
-  padding-bottom: 90px;
-}
-
-.subDetail {
-  font-size: 1rem;
-  font-weight: 400;
-  margin-bottom: 50px;
-}
-
-.subDetail::before {
+/* .subDetail::before {
   content: "History of \A Night Maret";
   white-space: pre;
   position: absolute;
   color: #919191;
   font-size: 20px;
-  top: -20%;
-}
+  top:5%;
+} */
 
 .marketText {
   font-size: 5rem;
   font-weight: bold;
   -webkit-writing-mode: vertical-lr;
   writing-mode: vertical-lr;
-  margin-right: 93px;
-  margin-left: 93px;
 }
-.marketCount li {
-  padding: 6%;
+
+@media (max-width: 768px) {
+    /* 設定當裝置寬度小於或等於768px時的CSS樣式 */
+  .btn-page{
+    display: none;
+  }
+  .btn-md-page{
+    display: block;
+  }
+  .historyText::after {
+    right: 30%;
+    bottom: -18%;
+  }
 }
 
 .productDetail {
@@ -667,16 +693,20 @@ ul {
     -webkit-writing-mode: horizontal-tb;
     writing-mode: horizontal-tb;
   }
-  .mdSub{
+  .mdSub {
     display: none;
   }
   .borderLine {
     border-bottom-style: dotted;
     border-bottom-color: #d1d1d1;
   }
-  .marketText {
-    position: absolute;
-    top: -10%;
+  .MainName img {
+    width: 70px;
+    height: auto;
+  }
+  .subName img {
+    width: 70px;
+    height: auto;
   }
 }
 </style>

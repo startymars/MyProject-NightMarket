@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-expand-md fixed-top"
+    class="navbar navbar-expand-md bg-black fixed-top"
     data-bs-spy="scroll"
     data-bs-target="#navbar-example"
   >
@@ -25,7 +25,7 @@
         class="collapse navbar-collapse justify-content-end"
         id="navbarNavDropdown"
       >
-        <ul class="navbar-nav align-items-center">
+        <ul class="navbar-nav align-items-center navbarLgMenu">
           <li class="nav-item">
             <router-link to="/News" class="text-decoration-none text-white"
               >最新消息</router-link
@@ -51,6 +51,25 @@
               >
             </div>
             <img src="../assets/user.png" alt="user" class="px-4" />
+          </li>
+        </ul>
+        <ul class="navbarMenu p-0 mt-5">
+          <li>
+            <router-link to="/News" class="fs-3 text-decoration-none text-white"
+              >最新消息</router-link
+            >
+          </li>
+          <li>
+            <router-link to="/Food" class="fs-3 text-decoration-none text-white"
+              >美食報報</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/Login"
+              class="fs-3 text-decoration-none text-white"
+              >新增你的餐廳</router-link
+            >
           </li>
         </ul>
       </div>
@@ -91,7 +110,24 @@ body {
 .nav-item {
   padding: 10px;
 }
-nav.scrolled {
-  background-color: black;
+.navbarMenu {
+  display: none;
+}
+.navbarMenu li {
+  margin: 10% 0%;
+}
+@media screen and (max-width: 768px) {
+  nav {
+    background-image: url("/src/assets/navbar.png");
+    background-repeat: no-repeat;
+    background-position: center, center;
+    background-size: cover;
+  }
+  #navbarNavDropdown .navbarLgMenu {
+    display: none;
+  }
+  .navbarMenu {
+    display: block;
+  }
 }
 </style>

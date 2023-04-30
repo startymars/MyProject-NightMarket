@@ -48,7 +48,7 @@
                   <td>
                     <button
                       type="button"
-                      class="btn btn-outline-danger"
+                      class="btn btn-sm btn-outline-danger"
                       @click="deleteCartItem(item.id)"
                     >
                       <span class="material-symbols-outlined">clear</span>
