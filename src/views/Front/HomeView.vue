@@ -86,12 +86,13 @@
             <div class="btn-md-page mt-3">
               <router-link to="/Food">
                 <button type="button" class="rounded-pill ps-3 pe-3">
-                  <span class="fw-bold">探索美食
+                  <span class="fw-bold"
+                    >探索美食
                     <img
-                    src="/src/assets/button.png"
-                    width="40"
-                    alt="前往商品"
-                  />
+                      src="/src/assets/button.png"
+                      width="40"
+                      alt="前往商品"
+                    />
                   </span>
                 </button>
               </router-link>
@@ -395,7 +396,6 @@ export default {
       this.$http
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/products/all`)
         .then((res) => {
-          console.log("取得該產品", res.data.products);
           this.cartegory = res.data.products;
           const newCategory = this.cartegory.map((food) => food.category);
           const uniqueArr = [...new Set(newCategory)];
@@ -459,7 +459,7 @@ ul {
   height: auto;
   margin-right: 1rem;
 }
-.btn-md-page{
+.btn-md-page {
   display: none;
 }
 .newButton {
@@ -472,8 +472,11 @@ ul {
   padding: 80px;
 }
 .bg-origin:has(.news:hover) {
-  background-image: url("/src/assets/hoverImg.png");
   color: #919191;
+  background-image: url("/src/assets/hoverImg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 .news:hover {
   color: #fff;
@@ -572,6 +575,7 @@ ul {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
+  background-attachment: fixed;
 }
 
 .historyCulture {
@@ -651,11 +655,11 @@ ul {
 }
 
 @media (max-width: 768px) {
-    /* 設定當裝置寬度小於或等於768px時的CSS樣式 */
-  .btn-page{
+  /* 設定當裝置寬度小於或等於768px時的CSS樣式 */
+  .btn-page {
     display: none;
   }
-  .btn-md-page{
+  .btn-md-page {
     display: block;
   }
   .historyText::after {

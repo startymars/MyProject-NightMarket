@@ -63,11 +63,12 @@ export default {
 .newBanner {
   width: 100%;
   height: 300px;
-  background-image: url("https://images.unsplash.com/photo-1527598041828-aea5d622f3a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTY3fHxmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
+  background-image: url("https://images.unsplash.com/photo-1485873174476-292bc2df1cc0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
   background-repeat: no-repeat;
   background-position: center, center;
   background-size: cover;
-  opacity: 0.8;
+  opacity: 0.9;
+  background-attachment:fixed;
 }
 .newsTitle {
   width: 30%;
@@ -77,11 +78,6 @@ export default {
   padding: 3%;
   font-weight: bold;
   font-size: 2rem;
-}
-.corner {
-  margin-top: 60px;
-  padding-top: 100px;
-  background-color: blue;
 }
 
 .newsShopImg {

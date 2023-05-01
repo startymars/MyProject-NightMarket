@@ -1,10 +1,6 @@
 <template>
-  <nav
-    class="navbar navbar-expand-md bg-black fixed-top"
-    data-bs-spy="scroll"
-    data-bs-target="#navbar-example"
-  >
-    <div class="container" id="navbar-example">
+  <nav class="navbar navbar-expand-md bg-black fixed-top">
+    <div class="container">
       <div class="logo">
         <router-link to="/">
           <img src="../assets/Logo.png" alt="logo" class="img-fluid" />
@@ -25,13 +21,13 @@
         class="collapse navbar-collapse justify-content-end"
         id="navbarNavDropdown"
       >
-        <ul class="navbar-nav align-items-center navbarLgMenu">
-          <li class="nav-item">
+        <ul class="navbar-nav align-items-center navbarLgMenu ms-2">
+          <li class="nav-item news">
             <router-link to="/News" class="text-decoration-none text-white"
               >最新消息</router-link
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item food">
             <router-link to="/Food" class="text-decoration-none text-white"
               >美食報報</router-link
             >
@@ -128,6 +124,12 @@ body {
   }
   .navbarMenu {
     display: block;
+  }
+  .navbarLgMenu .food {
+    display: none;
+  }
+  .navbarLgMenu .news {
+    display: none;
   }
 }
 </style>

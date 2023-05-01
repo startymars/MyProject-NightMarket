@@ -241,12 +241,10 @@ export default {
     ...mapActions(cartStore, ["addToCart"]),
 
     DetailProduct() {
-      console.log("22222", this.$route.params);
       const { id } = this.$route.params;
       this.$http
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/product/${id}`)
         .then((res) => {
-          console.log("取得該產品id", res.data.product);
           this.detailProduct = res.data.product;
         })
         .catch((err) => {

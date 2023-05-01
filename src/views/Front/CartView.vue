@@ -254,11 +254,12 @@ export default {
 .newBanner {
   width: 100%;
   height: 300px;
-  background-image: url("https://images.unsplash.com/photo-1529411081224-84ac0d0bf6ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjg1fHxmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
+  background-image: url("https://images.unsplash.com/photo-1523294587484-bae6cc870010?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA4fHxmb29kJTIwY2FydHxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60");
   background-repeat: no-repeat;
   background-position: center, center;
   background-size: cover;
   opacity: 0.8;
+  background-attachment: fixed;
 }
 .newsTitle {
   width: 30%;

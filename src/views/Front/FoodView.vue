@@ -1,7 +1,7 @@
 <template>
   <HeaderNav class="bg-black position-static" />
-  <div class="newBanner d-flex justify-content-center align-items-center">
-    <div class="newsTitle">美食報報</div>
+  <div class="foodBanner d-flex justify-content-center align-items-center">
+    <div class="foodTitle">美食報報</div>
   </div>
   <div class="bg-secondary">
     <div class="container">
@@ -197,78 +197,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="row">
-          <div
-            class="tab-pane fade show active col-lg-3 col-md-6 mb-3"
-            id="all"
-            role="tabpanel"
-            aria-labelledby="all-tab"
-            v-for="item in products"
-            :key="item.id"
-          >
-            <div class="product">
-              <div class="productImg">
-                <router-link :to="`/FoodDetail/${item.id}`">
-                  <img :src="item.imageUrl" class="img-fluid" alt="foodImg" />
-                </router-link>
-                <div class="productTag d-flex flex-column">
-                  <span class="fw-bold">{{ item.category[0] }}</span>
-                  <span class="fw-bold">{{ item.category[1] }}</span>
-                </div>
-              </div>
-              <div
-                class="productDetail d-flex flex-column justify-content-center pt-2 mb-3"
-              >
-                <div
-                  class="title d-flex justify-content-between align-items-center"
-                >
-                  <router-link :to="`/FoodDetail/${item.id}`">
-                    <h3 class="fw-bold fs-5 mb-2">{{ item.title }}</h3>
-                  </router-link>
-                  <div class="productIcon">
-                    <a
-                      href="#"
-                      v-if="!isFavorite"
-                      @click.prevent
-                      @click="favoriteProducts(item)"
-                    >
-                      <span
-                        class="material-symbols-outlined d-block"
-                        @click="clickFavorite"
-                        >favorite</span
-                      >
-                    </a>
-                    <a
-                      href="#"
-                      @click.prevent
-                      v-else
-                      @click="deleteFavoriteProducts(item)"
-                    >
-                      <span class="material-icons" @click="clickFavorite"
-                        >favorite</span
-                      ></a
-                    >
-                  </div>
-                </div>
-                <div class="price fs-6 mb-2">
-                  NT${{ item.price }}
-                  <small
-                    ><del>NT${{ item.origin_price }}</del></small
-                  >
-                </div>
-                <div class="d-grid gap-2">
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary p-2"
-                    @click="addToCart(item.id, 1)"
-                  >
-                    加入購物車
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div> -->
           <div
             class="tab-pane fade"
             id="food"
@@ -671,113 +599,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="row"> -->
-      <!-- <div class="col-lg-3 col-md-4">
-          <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                <button
-                  class="accordion-button"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#panelsStayOpen-collapseOne"
-                  aria-expanded="true"
-                  aria-controls="panelsStayOpen-collapseOne"
-                >
-                  美食類別
-                </button>
-              </h2>
-              <div
-                id="panelsStayOpen-collapseOne"
-                class="accordion-collapse collapse show"
-                aria-labelledby="panelsStayOpen-headingOne"
-              >
-                <div class="accordion-body">
-                  <ul class="p-2">
-                    <li class="p-2"><a href="#">全部(90)</a></li>
-                    <li class="p-2"><a href="#">小吃(2)</a></li>
-                    <li class="p-2"><a href="#">炸物(3)</a></li>
-                    <li class="p-2"><a href="#">飲料(4)</a></li>
-                    <li class="p-2"><a href="#">冰品(3)</a></li>
-                    <li class="p-2"><a href="#">甜點(4)</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      <!-- <div class="col-lg-12 col-md-8">
-          <div class="row">
-            <div
-              class="col-lg-3 col-md-6 mb-3"
-              v-for="item in products"
-              :key="item.id"
-            >
-              <div class="product">
-                <div class="productImg">
-                  <router-link :to="`/FoodDetail/${item.id}`">
-                    <img :src="item.imageUrl" class="img-fluid" alt="foodImg" />
-                  </router-link>
-                  <div class="productTag d-flex flex-column">
-                    <span class="fw-bold">{{ item.category[0] }}</span>
-                    <span class="fw-bold">{{ item.category[1] }}</span>
-                  </div>
-                </div>
-                <div
-                  class="productDetail d-flex flex-column justify-content-center pt-2 mb-3"
-                >
-                  <div
-                    class="title d-flex justify-content-between align-items-center"
-                  >
-                    <router-link :to="`/FoodDetail/${item.id}`">
-                      <h3 class="fw-bold fs-5 mb-2">{{ item.title }}</h3>
-                    </router-link>
-                    <div class="productIcon">
-                      <a
-                        href="#"
-                        v-if="!isFavorite"
-                        @click.prevent
-                        @click="favoriteProducts(item)"
-                      >
-                        <span
-                          class="material-symbols-outlined d-block"
-                          @click="clickFavorite"
-                          >favorite</span
-                        >
-                      </a>
-                      <a
-                        href="#"
-                        @click.prevent
-                        v-else
-                        @click="deleteFavoriteProducts(item)"
-                      >
-                        <span class="material-icons" @click="clickFavorite"
-                          >favorite</span
-                        ></a
-                      >
-                    </div>
-                  </div>
-                  <div class="price fs-6 mb-2">
-                    NT${{ item.price }}
-                    <small
-                      ><del>NT${{ item.origin_price }}</del></small
-                    >
-                  </div>
-                  <div class="d-grid gap-2">
-                    <button
-                      type="button"
-                      class="btn btn-outline-primary p-2"
-                      @click="addToCart(item.id, 1)"
-                    >
-                      加入購物車
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      <!-- </div> -->
     </div>
   </div>
   <FooterView />
@@ -790,7 +611,6 @@ import productStore from "@/stores/productStore.js";
 import cartStore from "@/stores/cartStore.js";
 import { mapActions, mapState } from "pinia";
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
-// const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
 export default {
   data() {
     return {
@@ -824,28 +644,22 @@ export default {
     },
   },
   methods: {
-    // ...mapActions(productStore, ["getProducts"]),
     ...mapActions(productStore, ["favoriteProducts"]),
     ...mapActions(cartStore, ["addToCart"]),
     ...mapActions(productStore, ["deleteFavoriteProducts"]),
     clickFavorite() {
       this.isFavorite = !this.isFavorite;
     },
-    sortItems() {
-      const filterItem = this.$refs.filterItem.value;
-      if (filterItem == "low") {
+    sortItems() { //更改篩選器時觸發
+      const filterItem = this.$refs.filterItem.value; //取得要更換的排序值
+      if (filterItem == "low") { //商品價格低到高排序
         this.products.sort((a, b) => a.price - b.price);
-      } else if (filterItem == "high") {
+      } else if (filterItem == "high") { //商品價格高到低排序
         this.products.sort((a, b) => b.price - a.price);
       }
     },
     Selecter() {
       this.products.forEach((item) => {
-        // if(this.chooseProduct[item.category]!=="小吃"){
-        //     this.chooseProduct.push({ "全部": this.num+1 });
-        //     this.chooseProduct.push({ [item.category]: this.num+1 });
-        //     console.log(this.chooseProduct);
-        // }
         if (item.category !== this.chooseProduct[item.category]) {
           this.chooseProduct.push({ [item.category]: this.num + 1 });
         }
@@ -859,7 +673,6 @@ export default {
     this.$http
       .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/products/all`)
       .then((res) => {
-        console.log("取得該產品", res.data.products);
         this.products = res.data.products;
         this.Selecter();
       })
@@ -872,16 +685,17 @@ export default {
 </script>
 
 <style scoped>
-.newBanner {
+.foodBanner {
   width: 100%;
   height: 300px;
-  background-image: url("https://images.unsplash.com/photo-1606851094291-6efae152bb87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjcyfHxmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
+  background-image: url("https://images.unsplash.com/photo-1475855664010-a869729f42c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTU2fHxmb29kJTIwY2FydHxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60");
   background-repeat: no-repeat;
   background-position: center, center;
   background-size: cover;
-  opacity: 0.8;
+  opacity: 0.9;
+  background-attachment:fixed;
 }
-.newsTitle {
+.foodTitle {
   width: 30%;
   text-align: center;
   position: absolute;
@@ -918,11 +732,11 @@ export default {
 }
 .filterFood {
   width: 200px;
-  background-color: #fafafa;
-  border: none;
-  border-bottom: 1px solid #f18724;
-  color: #818a91;
   min-height: 38px;
   text-indent: 10px;
+  background-color: #fafafa;
+  color: #818a91;
+  border: none;
+  border-bottom: 1px solid #f18724;
 }
 </style>

@@ -200,9 +200,7 @@ export default {
       this.$http
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`)
         .then((res) => {
-          console.log("233取得購物車列表", res.data.data);
           this.carts = res.data.data;
-          console.log("999有被存入", this.carts);
         })
         .catch((err) => {
           alert(err.response.data);
@@ -218,8 +216,8 @@ export default {
           this.$refs.form.resetForm();
           this.form.message = "";
           this.getCarts();
-          const orderId=res.data.orderId;
-          this.$router.push(`/OrdersFinish/${orderId}`)
+          const orderId = res.data.orderId;
+          this.$router.push(`/OrdersFinish/${orderId}`);
         })
         .catch((err) => {
           console.log(err.data);
@@ -241,6 +239,7 @@ export default {
   background-position: center, center;
   background-size: cover;
   opacity: 0.8;
+  background-attachment: fixed;
 }
 .newsTitle {
   width: 30%;

@@ -86,7 +86,7 @@
         <tr v-for="item in article" :key="item.id">
           <td>1111</td>
           <td>
-             <img :src="item.imageUrl" class="img-fluid" alt="newsImg">
+            <img :src="item.imageUrl" class="img-fluid" alt="newsImg" />
           </td>
           <td class="text-left">{{ item.title }}</td>
           <td class="text-left">{{ item.author }}</td>
@@ -131,7 +131,8 @@
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
           <h5 id="productModalLabel" class="modal-title">
-            <span>新增文章</span>
+            <span v-if="isNew">新增貼文</span>
+            <span v-else>編輯貼文</span>
           </h5>
           <button
             type="button"
@@ -143,142 +144,166 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-4">
-              <div class="mb-2">
-                <div class="mb-3">
-                  <label for="imageUrl" class="form-label">輸入圖片網址</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="tempProduct.imageUrl"
-                    placeholder="請輸入圖片連結"
-                  />
-                </div>
-                <img class="img-fluid" :src="tempProduct.imageUrl" alt="" />
+              <div class="mb-3">
+                <label for="title" class="form-label">標題</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  v-model="tempProduct.title"
+                  placeholder="請輸入標題"
+                />
               </div>
-
-              <div>
-                <h4>多圖設置</h4>
-                <div v-if="Array.isArray(tempProduct.imagesUrl)">
-                  <div
-                    class="mb-1"
-                    v-for="(image, key) in tempProduct.imagesUrl"
-                    :key="key"
-                  >
-                    <div class="mb-3">
-                      <label for="imageUrl" class="form-label">圖片網址</label>
-                      <input
-                        v-model="tempProduct.imagesUrl[key]"
-                        type="text"
-                        class="form-control"
-                        placeholder="請輸入圖片連結"
-                      />
-                    </div>
-                    <img class="img-fluid" :src="tempProduct.imagesUrl[key]" />
+              <div class="mb-3">
+                <label for="image" class="form-label">輸入圖片網址</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="image"
+                  v-model="tempProduct.imageUrl"
+                  placeholder="請輸入圖片連結"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="author" class="form-label">作者</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="author"
+                  v-model="tempProduct.author"
+                  placeholder="請輸入作者"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="create_at">文章建立日期</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="create_at"
+                  v-model="create_at"
+                />
+              </div>
+            </div>
+            <!-- <div>
+            
+              <div v-if="Array.isArray(tempProduct.imagesUrl)">
+                <div
+                  class="mb-1"
+                  v-for="(image, key) in tempProduct.imagesUrl"
+                  :key="key"
+                >
+                  <div class="mb-3">
+                    <label for="imageUrl" class="form-label">圖片網址</label>
+                    <input
+                      v-model="tempProduct.imagesUrl[key]"
+                      type="text"
+                      class="form-control"
+                      placeholder="請輸入圖片連結"
+                    />
                   </div>
-                  <div
-                    v-if="
-                      !tempProduct.imagesUrl.length ||
-                      tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]
-                    "
-                  >
-                    <button
-                      class="btn btn-outline-primary btn-sm d-block w-100"
-                      @click="tempProduct.imagesUrl.push('')"
-                    >
-                      新增圖片
-                    </button>
-                  </div>
-                  <div v-else>
-                    <button
-                      class="btn btn-outline-danger btn-sm d-block w-100"
-                      @click="tempProduct.imagesUrl.pop()"
-                    >
-                      刪除圖片
-                    </button>
-                  </div>
+                  <img class="img-fluid" :src="tempProduct.imagesUrl[key]" />
                 </div>
-                <div v-else>
+                <div
+                  v-if="
+                    !tempProduct.imagesUrl.length ||
+                    tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]
+                  "
+                >
                   <button
                     class="btn btn-outline-primary btn-sm d-block w-100"
-                    @click="createImages"
+                    @click="tempProduct.imagesUrl.push('')"
                   >
                     新增圖片
                   </button>
                 </div>
+                <div v-else>
+                  <button
+                    class="btn btn-outline-danger btn-sm d-block w-100"
+                    @click="tempProduct.imagesUrl.pop()"
+                  >
+                    刪除圖片
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="col-sm-8">
-              
-              <div class="mb-3">
-                <label for="shop" class="form-label">店家名稱</label>
-                <input
-                  id="shop"
-                  type="text"
-                  class="form-control"
-                  placeholder="請輸入店家名稱"
-                  v-model="tempProduct.author"
-                />
-              </div>  
-
-              <div class="mb-3">
-                <label for="title" class="form-label">文章標題</label>
-                <input
-                  id="title"
-                  type="text"
-                  class="form-control"
-                  placeholder="請輸入標題"
-                  v-model="tempProduct.title"
-                />
-              </div>
-
-              <div class="mb-3">
-                <label for="date" class="form-label">日期</label>
-                <input
-                  id="date"
-                  type="date"
-                  class="form-control"
-                  name="date"
-                  placeholder="請輸入日期"
-                  v-model="create_at"
-                />
-              </div>
-              <hr />
-              <div class="mb-3">
-                <label for="content" class="form-label">文章內容</label>
-                <textarea
-                  id="content"
-                  type="text"
-                  class="form-control"
-                  placeholder="請輸入文章內容"
-                  v-model="tempProduct.content"
+              <div v-else>
+                <button
+                  class="btn btn-outline-primary btn-sm d-block w-100"
+                  @click="createImages"
                 >
-                </textarea>
+                  新增圖片
+                </button>
               </div>
+            </div> -->
 
+            <div class="col-sm-8">
+              <label for="tag" class="form-label">標籤</label>
+              <div class="row gx-1 mb-3">
+                <div
+                  class="col-md-2 mb-1"
+                  v-for="(label, key) in tempProduct.tag"
+                  :key="key"
+                >
+                  <div class="input-group input-group-sm">
+                    <input
+                      type="text"
+                      class="form-control form-control"
+                      id="tag"
+                      v-model="tempProduct.tag[key]"
+                      placeholder="請輸入標籤"
+                    />
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger"
+                      @click="tempProduct.tag.splice(key, 1)"
+                    >
+                      <i class="bi bi-x"></i>
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="col-md-2 mb-1"
+                  v-if="
+                    tempProduct.tag[tempProduct.tag.length - 1] ||
+                    !tempProduct.tag.length
+                  "
+                >
+                  <button
+                    class="btn btn-outline-primary btn-sm d-block w-100"
+                    type="button"
+                    @click="tempProduct.tag.push('')"
+                  >
+                    新增標籤
+                  </button>
+                </div>
+              </div>
               <div class="mb-3">
                 <label for="description" class="form-label">文章描述</label>
                 <textarea
-                  id="description"
                   type="text"
                   class="form-control"
-                  placeholder="請輸入文章描述"
+                  id="description"
                   v-model="tempProduct.description"
-                >
-                </textarea>
+                  placeholder="請輸入文章描述"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <ckeditor
+                  :editor="editor"
+                  :config="editorConfig"
+                  v-model="tempProduct.content"
+                ></ckeditor>
               </div>
               <div class="mb-3">
                 <div class="form-check">
                   <input
-                    id="isPublic"
                     class="form-check-input"
                     type="checkbox"
-                    :true-value=true
-                    :false-value=false
                     v-model="tempProduct.isPublic"
+                    id="isPublic"
                   />
-                  <label class="form-check-label" for="isPublic"
-                    >是否啟用</label
-                  >
+                  <label class="form-check-label" for="isPublic">
+                    是否公開
+                  </label>
                 </div>
               </div>
             </div>
@@ -367,7 +392,7 @@
   width: 100%;
   height: 40px;
   padding: 10px;
-  transition: .2s linear;
+  transition: 0.2s linear;
   border: 2.5px solid black;
   font-size: 14px;
   text-transform: uppercase;
@@ -399,31 +424,45 @@
 <script>
 import * as bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Pagination from "@/components/PaginationView.vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
 export default {
   data() {
     return {
-      article: [],
+      article: {},
       tempProduct: {
-        imagesUrl: [],
+        tag: [""],
       },
       create_at: 0,
-      isNew: false,
+      isNew: true,
       page: {},
       bsModal: "",
       deleteModal: "",
+      editor: ClassicEditor,
+      editorConfig: {
+        toolbar: ["heading", "typing", "bold", "italic", "|", "link"],
+      },
     };
   },
   components: {
     Pagination,
   },
-  watch: {
-    create_at() {
-      this.tempProduct.create_at = Math.floor(new Date(this.create_at) / 1000);
-      console.log(this.tempProduct.create_at );
-    },
-  },
+  // watch: {
+  //   article() {
+  //     this.tempProduct = {
+  //       ...this.article,
+  //       tag: this.article.tag || [],
+  //       isPublic: this.article.isPublic || false,
+  //     };
+  //     [this.create_at] = new Date(this.tempProduct.create_at * 1000)
+  //       .toISOString()
+  //       .split('T');
+  //   },
+  //   create_at() {
+  //     this.tempProduct.create_at = Math.floor(new Date(this.create_at) / 1000);
+  //   },
+  // },
   methods: {
     getNews(page = 1) {
       this.$http
@@ -469,7 +508,7 @@ export default {
 
       this.$http[method](url, { data: this.tempProduct })
         .then((res) => {
-          console.log("11123",res.data);
+          console.log("11123", res.data);
           this.getNews(); //將新增後的產品重新呼叫取得產品列表
           this.bsModal.hide(); //關閉modal
         })

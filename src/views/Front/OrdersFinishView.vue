@@ -66,12 +66,10 @@ export default {
       this.$http
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/order/${id}`)
         .then((res) => {
-          console.log(res.data);
           this.order = res.data;
-          console.log(this.order);
         })
         .catch((err) => {
-          console.log(err.data);
+          alert(err.data);
         });
     },
   },

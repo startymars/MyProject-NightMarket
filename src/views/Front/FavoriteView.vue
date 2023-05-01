@@ -76,7 +76,7 @@ export default {
   data() {
     return {
       favoriteStatus: false,
-      products:[]
+      products: [],
     };
   },
   components: {
@@ -86,15 +86,15 @@ export default {
   computed: {
     ...mapState(productStore, ["favorites"]),
   },
-  mounted(){
-      this.products=this.favorites;
-      if(this.products.length){
-          this.favoriteStatus=true
-      }else{
-          this.favoriteStatus=false
-      }
-      window.scrollTo(0, 0);
-  }
+  mounted() {
+    this.products = this.favorites;
+    if (this.products.length) {
+      this.favoriteStatus = true;
+    } else {
+      this.favoriteStatus = false;
+    }
+    window.scrollTo(0, 0);
+  },
 };
 </script>
 
@@ -102,11 +102,12 @@ export default {
 .likeBanner {
   width: 100%;
   height: 300px;
-  background-image: url("https://images.unsplash.com/photo-1527598041828-aea5d622f3a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTY3fHxmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
+  background-image: url("https://images.unsplash.com/photo-1457666134378-6b77915bd5f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjMzfHxmb29kJTIwY2FydHxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60");
   background-repeat: no-repeat;
   background-position: center, center;
   background-size: cover;
-  opacity: 0.8;
+  opacity: 0.9;
+  background-attachment: fixed;
 }
 .likeTitle {
   width: 30%;
