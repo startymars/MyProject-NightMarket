@@ -15,7 +15,6 @@ export default defineStore('cartStore', {
       axios
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`)
         .then((res) => {
-          console.log("ww取得購物車列表", res.data.data);
           this.carts = res.data.data;
           if (this.carts.carts.length) {
             this.cartStatus = true
@@ -23,7 +22,6 @@ export default defineStore('cartStore', {
             this.cartStatus = false
           }
           this.calcNum();
-          console.log("有被存入", this.carts);
         })
         .catch((err) => {
           alert(err.response.data);
@@ -37,27 +35,28 @@ export default defineStore('cartStore', {
       axios
         .post(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`, { data })
         .then((res) => {
-          console.log("加入購物車:", res.data)
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          })
+          if (res.data) {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            Toast.fire({
+              icon: 'success',
+              title: '已加入購物車'
+            })
+            this.getCarts();
+          }
 
-          Toast.fire({
-            icon: 'success',
-            title: '已加入購物車'
-          })
-          this.getCarts();
         })
         .catch((err) => {
-          console.log(err.data);
+          alert(err.data);
         });
     },
     calcNum() {

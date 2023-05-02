@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import CKEditor from '@ckeditor/ckeditor5-vue'
 
 import './assets/all.scss'
 import './assets/custom.css'
@@ -33,6 +34,7 @@ const pinia=createPinia();
 app.use(pinia);
 app.use(router)
 app.use(VueAxios, axios)
+app.use(CKEditor)
 app.component('VForm', Form);
 app.component('VField', Field);
 app.component('ErrorMessage', ErrorMessage);

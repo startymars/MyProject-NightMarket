@@ -10,7 +10,11 @@
       </nav>
       <div class="row justify-content-center align-items-center text-center">
         <div class="col-12 mb-5">
-          <div class="h3 fw-bold">訂單完成</div>
+          <div class="h3 fw-bold">
+            <span class="me-3">訂單完成</span>
+           <img src="/src/assets/check.png"
+             alt="check" width=50>
+          </div>
         </div>
         <div
           class="col-12 border border-dark mb-5"
@@ -26,11 +30,11 @@
           </ul>
         </div>
         <div class="col-12 mb-5">
-         <router-link to="/">   
-          <button type="button" class="btn btn-primary px-5 py-3">
-            回首頁
-          </button>
-         </router-link>  
+          <router-link to="/">
+            <button type="button" class="btn btn-primary px-5 py-3">
+              回首頁
+            </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -52,7 +56,7 @@ export default {
     HeaderNav,
     FooterView,
   },
-   watch: {
+  watch: {
     "$route.params": {
       immediate: true,
       handler() {
@@ -74,7 +78,7 @@ export default {
     },
   },
   mounted() {
-     console.log(this.order);
+    console.log(this.order);
   },
 };
 </script>

@@ -16,7 +16,7 @@
           <h4>訂單資訊</h4>
           <hr />
           <v-form ref="form" v-slot="{ errors }" @submit="createOrder"
-            >{{ errors }}
+            >
             <div class="row">
               <div class="mb-3 col-6">
                 <label for="name" class="form-label">收件人姓名</label>
@@ -126,7 +126,7 @@
           </v-form>
         </div>
         <div class="col-lg-4 mb-4">
-          <div class="bg-primary p-4">
+          <div class="bg-white p-4">
             <h4>你的訂單</h4>
             <hr />
             <div class="payDetai p-0">
@@ -234,7 +234,7 @@ export default {
 .newBanner {
   width: 100%;
   height: 300px;
-  background-image: url("https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDM4fHxmb29kfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60");
+  background-image: url("https://images.unsplash.com/photo-1493770348161-369560ae357d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9vZHxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60");
   background-repeat: no-repeat;
   background-position: center, center;
   background-size: cover;

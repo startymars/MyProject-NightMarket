@@ -106,7 +106,7 @@
         <div
           class="col-lg-4 order-lg-3 news borderLine d-flex flex-lg-column justify-content-lg-between align-items-lg-center"
         >
-          <div class="mainTitle fw-bold fs-1">
+          <div class="mainTitle fw-bold fs-1" data-aos="flip-right">
             最新消息
             <div class="mainTag fs-6">News</div>
           </div>
@@ -153,12 +153,12 @@
             <div
               class="historyCulture text-white d-flex justify-content-between"
             >
-              <div class="historyDetail">
+              <div class="historyDetail" data-aos="fade-right">
                 /<br />夜市在臺灣，有超過100年的歷史。通常是因為當地的交通方便，或是有遼闊場地以及多人群聚集而加以形成。
                 <br /><br />據《臺灣日日新報》資料，1908年，有人在鳳山廳旗津天后宮廟前空地設夜市，營業時間為18時至24時。<br /><br />
                 此外，日治時期的納涼（日語：納涼）會活動也影響了後續臺灣夜市的發展
               </div>
-              <div class="historyText">
+              <div class="historyText" data-aos="fade-right">
                 歷史文化
                 <div class="fs-3">納涼的</div>
               </div>
@@ -172,11 +172,11 @@
                   alt="your-image-description"
                 />
               </div> -->
-              <div class="marketText">
+              <div class="marketText" data-aos="fade-left">
                 夜市文化
                 <div class="marketTag fs-3">台灣的</div>
               </div>
-              <div class="marketDetail">
+              <div class="marketDetail" data-aos="fade-left">
                 <div class="subDetail">
                   /<br />台灣小吃與夜市文化更是獨步全球，種類多樣化，是台灣人生活中最具代表性的飲食文化，舉凡蚵仔煎、蚵仔麵線、臭豆腐、炒米粉、大餅包小餅、萬巒豬腳、大腸蚵仔麵線、甜不辣、台南但仔麵…等,皆是台灣風味獨特的小吃名食，價位便宜又好吃，並且可以吃出該地的人文特色。
                   <br /><br />透過地方小吃，遊客可以更認識地方特產、文化與人文典故。因此，遊台灣，別錯過了精采絕倫的「夜市文化」!
@@ -186,19 +186,19 @@
           </div>
           <div class="col-sm-11 offset-sm-1 mb-5">
             <ul class="d-flex justify-content-evenly text-white">
-              <li class="text-center">
+              <li class="text-center" data-aos="zoom-in-down">
                 <div class="counter fs-2 fw-bold mb-2">36</div>
                 <div class="nCity">北部</div>
               </li>
-              <li class="text-center">
+              <li class="text-center" data-aos="zoom-in-down">
                 <div class="counter fs-2 fw-bold mb-2">49</div>
                 <div class="nCity">中部</div>
               </li>
-              <li class="text-center">
+              <li class="text-center" data-aos="zoom-in-down">
                 <div class="counter fs-2 fw-bold mb-2">52</div>
                 <div class="nCity">南部</div>
               </li>
-              <li class="text-center">
+              <li class="text-center" data-aos="zoom-in-down">
                 <div class="counter fs-2 fw-bold mb-2">24</div>
                 <div class="nCity">東部</div>
               </li>
@@ -264,7 +264,7 @@
     </div> -->
     <div class="bg-secondary">
       <div class="container">
-        <div class="productTopic p-5 text-center">
+        <div class="p-5 text-center">
           <div>Yummy Yummy</div>
           <div class="h3 fw-bold mt-3">人氣美食</div>
         </div>
@@ -522,7 +522,7 @@ ul {
 .productImg img {
   display: block;
   width: 100%;
-  height: 250px;
+  height: 300px;
   background-position: center center;
   background-size: cover;
   object-fit: cover;

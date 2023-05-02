@@ -16,7 +16,6 @@ export default defineStore('productStore', {
       axios
       .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/products/all`)
       .then((res) => {
-        console.log("有取得商品",res.data);
         this.isLoading=false;
         this.products = res.data.products;
       })

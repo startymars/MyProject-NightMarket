@@ -27,7 +27,7 @@
 
       <div class="row">
         <template v-if="cartStatus">
-          <div class="col-8">
+          <div class="col-lg-8 mb-3">
             <table class="table">
               <thead>
                 <tr>
@@ -48,10 +48,15 @@
                   <td>
                     <button
                       type="button"
-                      class="btn btn-sm btn-outline-danger"
+                      class="btn"
                       @click="deleteCartItem(item.id)"
                     >
-                      <span class="material-symbols-outlined">clear</span>
+                      <span
+                        class="material-symbols-outlined"
+                        @click="deleteCartItem(item.id)"
+                      >
+                        delete
+                      </span>
                     </button>
                   </td>
                   <td style="width: 150px">
@@ -106,7 +111,7 @@
           </div>
         </template>
         <template v-if="cartStatus">
-          <div class="col-4">
+          <div class="col-lg-4">
             <div class="discount">
               <div class="mb-3">
                 <label for="discount" class="form-label fw-bold h5"
@@ -174,7 +179,7 @@ import HeaderNav from "@/components/HeaderView.vue";
 import FooterView from "@/components/FooterView.vue";
 import cartStore from "@/stores/cartStore.js";
 import { mapActions, mapState } from "pinia";
-// import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 const { VITE_APP_URL, VITE_APP_PATH } = import.meta.env;
 export default {
   data() {
@@ -203,8 +208,18 @@ export default {
           data,
         })
         .then((res) => {
-          alert("更新購物車", res.data);
-          this.getCarts();
+          if (res.data) {
+            Swal.fire({
+              title: "產品已更新",
+              icon: "success",
+              showConfirmButton: true,
+              showCancelButton: true,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.getCarts();
+              }
+            });
+          }
         })
         .catch((err) => {
           alert(err.data);
@@ -214,14 +229,19 @@ export default {
       this.$http
         .delete(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart/${item}`)
         .then((res) => {
-          console.log("刪除購物車品項", res.data);
-          // Swal.fire({
-          //   title: "Error!",
-          //   text: "產品已刪除",
-          //   icon: "success",
-          //   showConfirmButton: true,
-          // });
-          this.getCarts();
+          if (res.data) {
+            Swal.fire({
+              title: "Delete!",
+              text: "產品已刪除",
+              icon: "success",
+              showConfirmButton: true,
+              showCancelButton: true,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.getCarts();
+              }
+            });
+          }
         })
         .catch((err) => {
           console.dir(err.data);
@@ -231,11 +251,20 @@ export default {
       this.$http
         .delete(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/carts`)
         .then((res) => {
-          console.log(res.data.message);
-          this.getCarts();
+          if (res.data) {
+            Swal.fire({
+              title: "購物車品項已刪除",
+              icon: "success",
+              showConfirmButton: true,
+              showCancelButton: true,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.getCarts();
+              }
+            });
+          }
         })
         .catch((err) => {
-          console.log(err.data.message);
           alert(err.data.message);
         });
     },
@@ -272,6 +301,6 @@ export default {
 }
 
 .cartList {
-  background-color: rgb(253, 255, 249);
+  background-color: rgb(255, 255, 255);
 }
 </style>

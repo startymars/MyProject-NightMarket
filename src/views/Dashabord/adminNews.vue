@@ -73,41 +73,37 @@
     <table class="table mt-4">
       <thead>
         <tr>
-          <th width="120">全選</th>
-          <th width="120">圖片</th>
-          <th>文章標題</th>
-          <th width="100">店家名稱</th>
-          <th width="100">建立日期</th>
-          <th width="100">是否啟用</th>
+          <th width="120">標題</th>
+          <th width="120">作者</th>
+          <th>描述</th>
+          <th width="100">建立時間</th>
+          <th width="100">是否公開</th>
           <th width="120">編輯</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in article" :key="item.id">
-          <td>1111</td>
+          <td>{{ article.title }}</td>
+          <td>{{ article.author }}</td>
+          <td>{{ article.description }}</td>
+          <td>{{ $filters.date(article.create_at) }}</td>
           <td>
-            <img :src="item.imageUrl" class="img-fluid" alt="newsImg" />
-          </td>
-          <td class="text-left">{{ item.title }}</td>
-          <td class="text-left">{{ item.author }}</td>
-          <td class="text-left">{{ item.create_at }}</td>
-          <td>
-            <span class="text-success" v-if="item.isPublic">啟用</span>
-            <span v-else>未啟用</span>
+            <span v-if="article.isPublic">已上架</span>
+            <span v-else>未上架</span>
           </td>
           <td>
             <div class="btn-group">
               <button
+                class="btn btn-outline-primary btn-sm"
                 type="button"
-                class="btn btn-outline-dark btn-sm"
-                @click="openModal('edit', item)"
+                @click="getArticle(article.id)"
               >
                 編輯
               </button>
               <button
-                type="button"
                 class="btn btn-outline-danger btn-sm"
-                @click="openModal('delete', item)"
+                type="button"
+                @click="openDelArticleModal(article)"
               >
                 刪除
               </button>
@@ -184,57 +180,6 @@
                 />
               </div>
             </div>
-            <!-- <div>
-            
-              <div v-if="Array.isArray(tempProduct.imagesUrl)">
-                <div
-                  class="mb-1"
-                  v-for="(image, key) in tempProduct.imagesUrl"
-                  :key="key"
-                >
-                  <div class="mb-3">
-                    <label for="imageUrl" class="form-label">圖片網址</label>
-                    <input
-                      v-model="tempProduct.imagesUrl[key]"
-                      type="text"
-                      class="form-control"
-                      placeholder="請輸入圖片連結"
-                    />
-                  </div>
-                  <img class="img-fluid" :src="tempProduct.imagesUrl[key]" />
-                </div>
-                <div
-                  v-if="
-                    !tempProduct.imagesUrl.length ||
-                    tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]
-                  "
-                >
-                  <button
-                    class="btn btn-outline-primary btn-sm d-block w-100"
-                    @click="tempProduct.imagesUrl.push('')"
-                  >
-                    新增圖片
-                  </button>
-                </div>
-                <div v-else>
-                  <button
-                    class="btn btn-outline-danger btn-sm d-block w-100"
-                    @click="tempProduct.imagesUrl.pop()"
-                  >
-                    刪除圖片
-                  </button>
-                </div>
-              </div>
-              <div v-else>
-                <button
-                  class="btn btn-outline-primary btn-sm d-block w-100"
-                  @click="createImages"
-                >
-                  新增圖片
-                </button>
-              </div>
-            </div> -->
-
             <div class="col-sm-8">
               <label for="tag" class="form-label">標籤</label>
               <div class="row gx-1 mb-3">

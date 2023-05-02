@@ -46,7 +46,9 @@
                 >{{ cartNum }}</span
               >
             </div>
-            <img src="../assets/user.png" alt="user" class="px-4" />
+            <router-link to="/login">
+              <img src="../assets/user.png" alt="user" class="px-4" />
+            </router-link>
           </li>
         </ul>
         <ul class="navbarMenu p-0 mt-5">
