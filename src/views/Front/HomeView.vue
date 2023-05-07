@@ -266,7 +266,7 @@
       <div class="container">
         <div class="p-5 text-center">
           <div>Yummy Yummy</div>
-          <div class="h3 fw-bold mt-3">人氣美食</div>
+          <div class="h2 fw-bold mt-3">人氣美食</div>
         </div>
         <div class="row mx-auto">
           <div

@@ -115,7 +115,7 @@
             <div class="discount">
               <div class="mb-3">
                 <label for="discount" class="form-label fw-bold h5"
-                  >優惠券折扣</label
+                  >優惠券折扣(尚未製作)</label
                 >
                 <input
                   type="text"
@@ -136,7 +136,7 @@
               </div>
             </div>
             <div class="cartList p-3 mb-4">
-              <h5 class="mb-5">購物清單總計</h5>
+              <h5 class="fw-bold mb-5">購物清單總計</h5>
               <div class="cartTotal">
                 <div
                   class="cartOrigin d-flex justify-content-between align-items-center"
@@ -213,7 +213,6 @@ export default {
               title: "產品已更新",
               icon: "success",
               showConfirmButton: true,
-              showCancelButton: true,
             }).then((result) => {
               if (result.isConfirmed) {
                 this.getCarts();
@@ -235,7 +234,6 @@ export default {
               text: "產品已刪除",
               icon: "success",
               showConfirmButton: true,
-              showCancelButton: true,
             }).then((result) => {
               if (result.isConfirmed) {
                 this.getCarts();

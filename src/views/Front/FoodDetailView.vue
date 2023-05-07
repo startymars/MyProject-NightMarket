@@ -17,15 +17,27 @@
       </nav>
       <div class="row mx-auto mb-5">
         <div class="col-lg-5">
-          <img
-            class="detailImg"
-            :src="detailProduct.imageUrl"
-            :alt="detailProduct.title"
-          />
+          <div class="mb-4">
+            <img
+              class="detailImg"
+              :src="detailProduct.imageUrl"
+              :alt="detailProduct.title"
+            />
+          </div>
+          <div class="mb-3">
+            <img
+              v-for="item in detailProduct.imagesUrl"
+              :key="item + '1234'"
+              class="detailSubImg me-1"
+              :src="item"
+              :alt="detailProduct.title"
+              @click="changeBigImg(item)"
+            />
+          </div>
         </div>
         <div class="col-lg-6 offset-lg-1">
           <ul class="p-0">
-            <li class="h4 mb-3">{{ detailProduct.title }}</li>
+            <li class="h4 fw-bold mb-3">{{ detailProduct.title }}</li>
             <li class="bg-light p-3">
               <span class="h5 fw-bold text-primary"
                 >NT${{ detailProduct.price }}</span
@@ -47,7 +59,12 @@
               <span class="col-sm-2 col-form-label">數量：</span>
               <div class="col-sm-10">
                 <span>
-                  <select name="" id="" class="form-control"  v-model="productQty">
+                  <select
+                    name=""
+                    id=""
+                    class="form-control"
+                    v-model="productQty"
+                  >
                     <option :value="i" v-for="i in 10" :key="i + '12345'">
                       {{ i }}
                     </option>
@@ -134,26 +151,35 @@
         <swiper
           :slidesPerView="1"
           :breakpoints="{
-            '567': {
-              spaceBetween: 40,
+            '580': {
+              spaceBetween: 20,
               slidesPerView: 2,
             },
             '992': {
-              spaceBetween: 40,
+              spaceBetween: 20,
               slidesPerView: 3,
             },
             '1205': {
               slidesPerView: 4,
             },
           }"
-          :spaceBetween="20"
+          :spaceBetween="-20"
           :loop="true"
           :navigation="{
-            clickable: ture,
+            nextEl: '.my-button-next',
+            prevEl: '.my-button-prev',
+            click: true,
           }"
           :modules="modules"
           class="mySwiper"
         >
+          <div class="my-button-next">
+            <span class="material-icons"> arrow_circle_left </span>
+          </div>
+          <div class="my-button-prev">
+            <span class="material-icons"> arrow_circle_right </span>
+          </div>
+
           <swiper-slide v-for="item in products" :key="item.id">
             <div>
               <div class="otherImg mb-4">
@@ -170,11 +196,11 @@
 
               <div>
                 <h5 class="mt-2">{{ item.title }}</h5>
-                <p class="p-0 mb-5" :class="{ 'hovered': showLabel }" v-if="showLabel" @mouseover="showLabel = false">
+                <p class="p-0 mb-5">
                   NT$
                   {{ item.price }}
                 </p>
-                <button
+                <!-- <button
                   type="button"
                   class="btn btn-primary"
                   @click="addToCart(item.id, 1)"
@@ -182,7 +208,7 @@
                   @mouseleave="showLabel = true"
                 >
                   加入購物車
-                </button>
+                </button> -->
               </div>
             </div></swiper-slide
           >
@@ -213,9 +239,8 @@ export default {
   data() {
     return {
       detailProduct: [],
-      productQty:1,
+      productQty: 1,
       modules: [Navigation],
-      showLabel: true,
     };
   },
   components: {
@@ -251,6 +276,9 @@ export default {
           alert(err.response.data);
         });
     },
+    changeBigImg(image) {
+      this.detailProduct.imageUrl = image;
+    },
   },
   mounted() {
     this.DetailProduct();
@@ -278,9 +306,40 @@ export default {
   margin-right: auto;
 }
 
+.my-button-prev {
+  position: absolute;
+  right: 0%;
+  bottom: 60%;
+  width: 30px;
+  height: 30px;
+  z-index: 999;
+  transform: scale(1.6);
+  color:#F18724;
+}
+
+.my-button-next {
+  position: absolute;
+  left: 1%;
+  bottom: 60%;
+  width: 30px;
+  height: 30px;
+  z-index: 999;
+  transform: scale(1.6);
+  color:#F18724;
+}
+
 .detailImg {
   width: 100%;
-  height: 400px;
+  height: 350px;
+  background-position: center center;
+  background-size: cover;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.detailSubImg {
+  width: 25%;
+  height: 100px;
   background-position: center center;
   background-size: cover;
   object-fit: cover;
